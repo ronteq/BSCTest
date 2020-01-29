@@ -8,7 +8,9 @@
 
 import UIKit
 
-class NotesViewController: UIViewController {
+class NotesViewController: UIViewController, Loadable {
+    
+    var containerLoader: ContainerLoader?
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -18,6 +20,13 @@ class NotesViewController: UIViewController {
         tableView.backgroundColor = .systemGray6
         tableView.register(NoteTableViewCell.self, forCellReuseIdentifier: NoteTableViewCell.identifier)
         return tableView
+    }()
+    
+    private lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = .white
+        refreshControl.addTarget(viewModel, action: #selector(viewModel.getNotes), for: .valueChanged)
+        return refreshControl
     }()
     
     private let viewModel: NotesViewModel
@@ -35,6 +44,7 @@ class NotesViewController: UIViewController {
         super.viewDidLoad()
         initialSetup()
         makeBindings()
+        startLoading()
         viewModel.getNotes()
     }
     
@@ -47,6 +57,7 @@ class NotesViewController: UIViewController {
     }
     
     private func setupTableView() {
+        tableView.refreshControl = refreshControl
         tableView.tableFooterView = UIView()
         view.addSubview(tableView)
         tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
@@ -63,6 +74,8 @@ class NotesViewController: UIViewController {
     private func makeBindings() {
         viewModel.notesDidLoad = { [weak self] in
             DispatchQueue.main.async {
+                self?.refreshControl.endRefreshing()
+                self?.stopLoading()
                 self?.tableView.reloadData()
             }
         }

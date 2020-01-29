@@ -22,6 +22,7 @@
 		4CFDA85623E1AB520059B591 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFDA85523E1AB520059B591 /* UIView+Constraints.swift */; };
 		4CFDA85823E1AD220059B591 /* NoteCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFDA85723E1AD220059B591 /* NoteCellViewModel.swift */; };
 		4CFDA85A23E1B1D50059B591 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFDA85923E1B1D50059B591 /* String.swift */; };
+		4CFDA85D23E1BBAB0059B591 /* Loadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFDA85C23E1BBAB0059B591 /* Loadable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		4CFDA85523E1AB520059B591 /* UIView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
 		4CFDA85723E1AD220059B591 /* NoteCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCellViewModel.swift; sourceTree = "<group>"; };
 		4CFDA85923E1B1D50059B591 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		4CFDA85C23E1BBAB0059B591 /* Loadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loadable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				4CFDA85123E1A9330059B591 /* CellProtocol.swift */,
+				4CFDA85C23E1BBAB0059B591 /* Loadable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 				4C1F8BCB23E1A3EE00D5413C /* AppDelegate.swift in Sources */,
 				4CFDA85823E1AD220059B591 /* NoteCellViewModel.swift in Sources */,
 				4CFDA84C23E1A7D00059B591 /* NotesViewController.swift in Sources */,
+				4CFDA85D23E1BBAB0059B591 /* Loadable.swift in Sources */,
 				4C1F8BCD23E1A3EE00D5413C /* SceneDelegate.swift in Sources */,
 				4CFDA84523E1A6E70059B591 /* ColorPalette.swift in Sources */,
 				4CFDA85A23E1B1D50059B591 /* String.swift in Sources */,

@@ -15,6 +15,7 @@ class NotesViewModel {
     
     private var notes: [String] = []
     
+    @objc
     func getNotes() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.notes = [
