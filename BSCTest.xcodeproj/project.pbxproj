@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4C15244023E1CB5B001060A7 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15243F23E1CB5B001060A7 /* UIViewController.swift */; };
 		4C15244223E1CCB2001060A7 /* RequestProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15244123E1CCB2001060A7 /* RequestProvider.swift */; };
+		4C15244623E1D4E1001060A7 /* AddNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15244523E1D4E1001060A7 /* AddNoteViewController.swift */; };
+		4C15244823E1D7CB001060A7 /* AddNoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15244723E1D7CB001060A7 /* AddNoteViewModel.swift */; };
 		4C1F8BCB23E1A3EE00D5413C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1F8BCA23E1A3EE00D5413C /* AppDelegate.swift */; };
 		4C1F8BCD23E1A3EE00D5413C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1F8BCC23E1A3EE00D5413C /* SceneDelegate.swift */; };
 		4C1F8BD423E1A3F300D5413C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C1F8BD323E1A3F300D5413C /* Assets.xcassets */; };
@@ -35,6 +37,8 @@
 /* Begin PBXFileReference section */
 		4C15243F23E1CB5B001060A7 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		4C15244123E1CCB2001060A7 /* RequestProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestProvider.swift; sourceTree = "<group>"; };
+		4C15244523E1D4E1001060A7 /* AddNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteViewController.swift; sourceTree = "<group>"; };
+		4C15244723E1D7CB001060A7 /* AddNoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteViewModel.swift; sourceTree = "<group>"; };
 		4C1F8BC723E1A3EE00D5413C /* BSCTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BSCTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C1F8BCA23E1A3EE00D5413C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4C1F8BCC23E1A3EE00D5413C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +75,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C15244323E1D414001060A7 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		4C15244423E1D4D4001060A7 /* Add */ = {
+			isa = PBXGroup;
+			children = (
+				4C15244523E1D4E1001060A7 /* AddNoteViewController.swift */,
+				4C15244723E1D7CB001060A7 /* AddNoteViewModel.swift */,
+			);
+			path = Add;
+			sourceTree = "<group>";
+		};
 		4C1F8BBE23E1A3EE00D5413C = {
 			isa = PBXGroup;
 			children = (
@@ -168,6 +188,8 @@
 		4CFDA84923E1A7B10059B591 /* Notes */ = {
 			isa = PBXGroup;
 			children = (
+				4C15244423E1D4D4001060A7 /* Add */,
+				4C15244323E1D414001060A7 /* Detail */,
 				4CFDA84A23E1A7BA0059B591 /* List */,
 			);
 			path = Notes;
@@ -327,10 +349,12 @@
 				4CFDA86423E1C3D10059B591 /* NoteProvider.swift in Sources */,
 				4C1F8BCD23E1A3EE00D5413C /* SceneDelegate.swift in Sources */,
 				4CFDA84523E1A6E70059B591 /* ColorPalette.swift in Sources */,
+				4C15244823E1D7CB001060A7 /* AddNoteViewModel.swift in Sources */,
 				4CFDA85A23E1B1D50059B591 /* String.swift in Sources */,
 				4CFDA86E23E1C5F80059B591 /* ApplicationError.swift in Sources */,
 				4CFDA85423E1A94E0059B591 /* NotesViewModel.swift in Sources */,
 				4CFDA86923E1C4C30059B591 /* BscEndpoint.swift in Sources */,
+				4C15244623E1D4E1001060A7 /* AddNoteViewController.swift in Sources */,
 				4CFDA86023E1C3200059B591 /* Note.swift in Sources */,
 				4CFDA84F23E1A9080059B591 /* NoteTableViewCell.swift in Sources */,
 				4C15244223E1CCB2001060A7 /* RequestProvider.swift in Sources */,

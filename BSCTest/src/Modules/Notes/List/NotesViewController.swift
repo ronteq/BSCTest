@@ -91,7 +91,9 @@ class NotesViewController: UIViewController, Loadable {
     
     @objc
     private func addNotePressed() {
-        
+        let addNoteViewModel = AddNoteViewModel()
+        let addNoteViewController = AddNoteViewController(viewModel: addNoteViewModel)
+        present(BscNavigationController(rootViewController: addNoteViewController), animated: true, completion: nil)
     }
     
     private func showDetailNote(at indexPath: IndexPath) {
@@ -123,17 +125,6 @@ extension NotesViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: NoteTableViewCell.identifier, for: indexPath) as? NoteTableViewCell else { return UITableViewCell() }
         cell.viewModel = viewModel.getNoteCellViewModel(at: indexPath)
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-//            viewModel.deleteTask(atIndexPath: indexPath)
-//            tableView.deleteRows(at: [indexPath], with: .left)
-        }
     }
     
 }
