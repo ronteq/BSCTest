@@ -79,6 +79,14 @@ class NotesViewController: UIViewController, Loadable {
                 self?.tableView.reloadData()
             }
         }
+        
+        viewModel.notesDidLoadWithError = { [weak self] errorMessage in
+            DispatchQueue.main.async {
+                self?.refreshControl.endRefreshing()
+                self?.stopLoading()
+                self?.createAlert(withMessage: errorMessage)
+            }
+        }
     }
     
     @objc

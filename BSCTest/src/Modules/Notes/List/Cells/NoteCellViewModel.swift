@@ -10,11 +10,11 @@ import Foundation
 
 class NoteCellViewModel {
     
-    var noteSummary: String { note.getFirst24Characters() }
+    var noteSummary: String { note.title.getFirst24Characters() }
     
-    private let note: String
+    private let note: Note
     
-    init(note: String) {
+    init(note: Note) {
         self.note = note
     }
     
