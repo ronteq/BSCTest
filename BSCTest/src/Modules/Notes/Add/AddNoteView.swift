@@ -10,7 +10,7 @@ import UIKit
 
 protocol AddNoteViewDelegate: class {
     func addNoteDidSelectChangeColor()
-    func addNoteDidSave()
+    func addNoteDidSave(title: String, body: String, color: Color)
 }
 
 class AddNoteView: UIView {
@@ -26,10 +26,10 @@ class AddNoteView: UIView {
         return textField
     }()
     
-    private let colorView: UIView = {
+    private lazy var colorView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .black
+        view.backgroundColor = UIColor(hexString: currentColor.hex)
         view.layer.cornerRadius = 10
         return view
     }()
@@ -67,6 +67,12 @@ class AddNoteView: UIView {
         return button
     }()
     
+    private var currentColor: Color = Color(name: "Trivial", hex: "#000000") {
+        didSet {
+            colorView.backgroundColor = UIColor(hexString: currentColor.hex)
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -77,8 +83,8 @@ class AddNoteView: UIView {
         fatalError()
     }
     
-    func setColor(_ color: UIColor) {
-        colorView.backgroundColor = color
+    func setColor(_ color: Color) {
+        currentColor = color
     }
     
     private func setupViews() {
@@ -121,7 +127,7 @@ class AddNoteView: UIView {
     @objc
     private func saveButtonPressed() {
         // TODO: Make some validations
-        delegate?.addNoteDidSave()
+        delegate?.addNoteDidSave(title: titleTextField.text ?? "", body: bodyTextView.text, color: currentColor)
     }
     
     @objc

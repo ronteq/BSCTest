@@ -10,8 +10,20 @@ import Foundation
 
 class AddNoteViewModel {
     
-    func saveNote(title: String, body: String) {
-        
+    private let noteProvider: NoteProvider
+    
+    init(noteProvider: NoteProvider = NoteProvider()) {
+        self.noteProvider = noteProvider
+    }
+    
+    func saveNote(title: String, body: String, color: Color) {
+        let note = Note(title: title, body: body, colorHex: color.hex)
+        noteProvider.createNote(note: note) { result in
+            switch result {
+            case .success: print("yes")
+            case .failure(let error): print(error.localizedDescription)
+            }
+        }
     }
     
 }

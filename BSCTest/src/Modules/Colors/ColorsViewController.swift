@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ColorsViewControllerDelegate: class {
-    func colorsViewControllerDelegate(didSelectColor color: UIColor)
+    func colorsViewControllerDelegate(didSelectColor color: Color)
 }
 
 class ColorsViewController: UIViewController {
@@ -66,7 +66,7 @@ extension ColorsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let color = UIColor(hexString: viewModel.hexString(at: indexPath))
+        let color = viewModel.getColor(at: indexPath)
         delegate?.colorsViewControllerDelegate(didSelectColor: color)
         dismiss(animated: true, completion: nil)
     }

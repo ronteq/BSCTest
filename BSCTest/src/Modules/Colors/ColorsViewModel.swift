@@ -13,7 +13,6 @@ class ColorsViewModel {
     var colorsCount: Int { colors.count }
     private var colors: [Color] = []
     
-    
     init() {
         colors.append(Color(name: "Vacation", hex: "#33d236"))
         colors.append(Color(name: "Work", hex: "#FF0000"))
@@ -26,8 +25,8 @@ class ColorsViewModel {
         return ColorCellViewModel(color: colors[indexPath.row])
     }
     
-    func hexString(at indexPath: IndexPath) -> String {
-        return colors[indexPath.row].hex
+    func getColor(at indexPath: IndexPath) -> Color {
+        return colors[indexPath.row]
     }
     
 }

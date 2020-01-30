@@ -70,15 +70,15 @@ extension AddNoteViewController: AddNoteViewDelegate {
         present(colorsViewController, animated: true, completion: nil)
     }
     
-    func addNoteDidSave() {
-        
+    func addNoteDidSave(title: String, body: String, color: Color) {
+        viewModel.saveNote(title: title, body: body, color: color)
     }
     
 }
 
 extension AddNoteViewController: ColorsViewControllerDelegate {
     
-    func colorsViewControllerDelegate(didSelectColor color: UIColor) {
+    func colorsViewControllerDelegate(didSelectColor color: Color) {
         addNoteView.setColor(color)
     }
     
