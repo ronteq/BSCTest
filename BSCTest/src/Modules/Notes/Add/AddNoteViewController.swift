@@ -8,35 +8,13 @@
 
 import UIKit
 
-class AddNoteViewController: UIViewController {
+class AddNoteViewController: ToggleKeyboardViewController {
     
-    private let titleTextField: UITextField = {
-        let textField = UITextField()
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.borderStyle = .roundedRect
-        textField.placeholder = "Amazing title for your note"
-        textField.font = UIFont.systemFont(ofSize: 16)
-        return textField
-    }()
-    
-    private let bodyTextView: UITextView = {
-        let textView = UITextView()
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.font = UIFont.systemFont(ofSize: 14)
-        textView.isScrollEnabled = true
-        textView.isUserInteractionEnabled = true
-        return textView
-    }()
-    
-    private lazy var saveButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Save", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = ColorPalette.secondaryColor
-        button.layer.cornerRadius = 8
-        button.addTarget(self, action: #selector(saveButtonPressed), for: .touchUpInside)
-        return button
+    private lazy var addNoteView: AddNoteView = {
+        let view = AddNoteView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.delegate = self
+        return view
     }()
     
     private let viewModel: AddNoteViewModel
@@ -67,38 +45,41 @@ class AddNoteViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissView))
     }
     
-    private func setupViews() {
-        let verticalStackView = UIStackView(arrangedSubviews: [titleTextField, bodyTextView])
-        verticalStackView.translatesAutoresizingMaskIntoConstraints = false
-        verticalStackView.alignment = .fill
-        verticalStackView.distribution = .fill
-        verticalStackView.axis = .vertical
-        verticalStackView.spacing = 16
-        view.addSubview(verticalStackView)
-        
-        titleTextField.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        bodyTextView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 3).isActive = true
-        
-        verticalStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 24).isActive = true
-        verticalStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24).isActive = true
-        verticalStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24).isActive = true
-        
-        view.addSubview(saveButton)
-        saveButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        saveButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24).isActive = true
-        saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24).isActive = true
-        saveButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -24).isActive = true
-    }
-    
     @objc
     private func dismissView() {
         dismiss(animated: true, completion: nil)
     }
     
-    @objc
-    private func saveButtonPressed() {
-        // TODO: Make some validations
-        viewModel.saveNote(title: titleTextField.text ?? "", body: bodyTextView.text)
+    private func setupViews() {
+        view.addSubview(addNoteView)
+        
+        addNoteView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 24).isActive = true
+        addNoteView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24).isActive = true
+        addNoteView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24).isActive = true
+        addNoteView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -24).isActive = true
+    }
+    
+}
+
+extension AddNoteViewController: AddNoteViewDelegate {
+    
+    func addNoteDidSelectChangeColor() {
+        let colorsViewModel = ColorsViewModel()
+        let colorsViewController = ColorsViewController(viewModel: colorsViewModel)
+        colorsViewController.delegate = self
+        present(colorsViewController, animated: true, completion: nil)
+    }
+    
+    func addNoteDidSave() {
+        
+    }
+    
+}
+
+extension AddNoteViewController: ColorsViewControllerDelegate {
+    
+    func colorsViewControllerDelegate(didSelectColor color: UIColor) {
+        addNoteView.setColor(color)
     }
     
 }
