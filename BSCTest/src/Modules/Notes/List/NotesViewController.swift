@@ -12,14 +12,16 @@ class NotesViewController: UIViewController, Loadable {
     
     var containerLoader: ContainerLoader?
     
-    private lazy var tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.backgroundColor = .systemGray6
-        tableView.register(NoteTableViewCell.self, forCellReuseIdentifier: NoteTableViewCell.identifier)
-        return tableView
+    private lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        cv.delegate = self
+        cv.dataSource = self
+        cv.register(NoteCollectionViewCell.self, forCellWithReuseIdentifier: NoteCollectionViewCell.identifier)
+        cv.backgroundColor = .systemGray6
+        return cv
     }()
     
     private lazy var refreshControl: UIRefreshControl = {
@@ -57,13 +59,12 @@ class NotesViewController: UIViewController, Loadable {
     }
     
     private func setupTableView() {
-        tableView.refreshControl = refreshControl
-        tableView.tableFooterView = UIView()
-        view.addSubview(tableView)
-        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        collectionView.refreshControl = refreshControl
+        view.addSubview(collectionView)
+        collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     
     private func addBarButtons() {
@@ -76,7 +77,7 @@ class NotesViewController: UIViewController, Loadable {
             DispatchQueue.main.async {
                 self?.refreshControl.endRefreshing()
                 self?.stopLoading()
-                self?.tableView.reloadData()
+                self?.collectionView.reloadData()
             }
         }
         
@@ -103,29 +104,34 @@ class NotesViewController: UIViewController, Loadable {
     
 }
 
-extension NotesViewController: UITableViewDelegate {
+extension NotesViewController: UICollectionViewDataSource {
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewModel.notesCount
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        showDetailNote(at: indexPath)
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NoteCollectionViewCell.identifier, for: indexPath) as? NoteCollectionViewCell else { return UICollectionViewCell() }
+        cell.viewModel = viewModel.getNoteCellViewModel(at: indexPath)
+        return cell
     }
     
 }
 
-extension NotesViewController: UITableViewDataSource {
+extension NotesViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.notesCount
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let screenWidth = UIScreen.main.bounds.width
+        let halfScreenWidth = screenWidth / 2
+        return CGSize(width: halfScreenWidth - 32, height: 150)
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: NoteTableViewCell.identifier, for: indexPath) as? NoteTableViewCell else { return UITableViewCell() }
-        cell.viewModel = viewModel.getNoteCellViewModel(at: indexPath)
-        return cell
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 24, left: 16, bottom: 24, right: 16)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        showDetailNote(at: indexPath)
     }
     
 }
@@ -135,7 +141,7 @@ extension NotesViewController: AddNoteViewControllerDelegate {
     func addNoteViewControllerDidCreateNote(_ note: Note) {
         viewModel.addNote(note)
         let indexPath = IndexPath(row: viewModel.notesCount - 1, section: 0)
-        tableView.insertRows(at: [indexPath], with: .right)
+        collectionView.insertItems(at: [indexPath])
     }
     
 }

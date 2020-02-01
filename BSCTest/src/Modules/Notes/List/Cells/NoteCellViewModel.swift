@@ -10,7 +10,10 @@ import Foundation
 
 class NoteCellViewModel {
     
-    var noteSummary: String { note.title.getFirst24Characters() }
+    var noteColorHex: String { note.colorHex }
+    var noteTitle: String { note.title }
+    var noteSummary: String { note.body.getFirst24Characters() }
+    var noteDate: String { "29-01-2020" }
     
     private let note: Note
     

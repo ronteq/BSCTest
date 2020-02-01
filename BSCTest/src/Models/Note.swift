@@ -36,7 +36,7 @@ struct Note: Codable {
         let text = try values.decode(String.self, forKey: .title)
         
         title = Self.parseTitleFromText(text)
-        colorHex = ""
+        colorHex = "#000000"
         body = ""
     }
     
