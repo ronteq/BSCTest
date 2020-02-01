@@ -9,6 +9,7 @@
 import UIKit
 
 protocol UpdateNoteViewControllerDelegate: class {
+    func updateNoteViewControllerDidUpdate(_ note: Note)
     func updateNoteViewControllerDidDelete(_ note: Note)
 }
 
@@ -33,10 +34,6 @@ class UpdateNoteViewController: ToggleKeyboardViewController, Loadable {
     
     required init?(coder: NSCoder) {
         fatalError()
-    }
-    
-    deinit {
-        print("Bye")
     }
     
     override func viewDidLoad() {
@@ -94,7 +91,7 @@ class UpdateNoteViewController: ToggleKeyboardViewController, Loadable {
             DispatchQueue.main.async {
                 self?.stopLoading()
                 self?.navigationController?.popViewController(animated: true)
-//                self?.delegate?.addNoteViewControllerDidCreateNote(note)
+                self?.delegate?.updateNoteViewControllerDidUpdate(note)
             }
         }
         

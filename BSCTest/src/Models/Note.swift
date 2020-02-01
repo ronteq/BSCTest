@@ -14,9 +14,9 @@ struct EmptyObject: Decodable {
 
 struct Note: Codable {
     let id: Int
-    let title: String
-    let colorHex: String
-    let body: String
+    var title: String
+    var colorHex: String
+    var body: String
     
     enum CodingKeys: String, CodingKey {
         case id

@@ -19,7 +19,7 @@ class UpdateNoteViewModel {
     var noteDidDelete: ((Note) -> Void)?
     var noteDidUpdateWithError: ((String) -> Void)?
     
-    private let note: Note
+    private var note: Note
     private let noteProvider: NoteProvider
     
     init(note: Note, noteProvider: NoteProvider = NoteProvider()) {
@@ -28,7 +28,17 @@ class UpdateNoteViewModel {
     }
     
     func updateNote(title: String, body: String, color: Color) {
+        note.title = title
+        note.body = body
+        note.colorHex = color.hex
+        
         showLoader?()
+        noteProvider.updateNote(note: note) { result in
+            switch result {
+            case .success: self.noteDidUpdate?(self.note)
+            case .failure(let error): self.noteDidUpdateWithError?(error.localizedDescription)
+            }
+        }
     }
     
     func deleteNote() {
@@ -36,7 +46,7 @@ class UpdateNoteViewModel {
         noteProvider.deleteNote(id: note.id) { result in
             switch result {
             case .success: self.noteDidDelete?(self.note)
-            case .failure(let error): print(error.localizedDescription)
+            case .failure(let error): self.noteDidUpdateWithError?(error.localizedDescription)
             }
         }
     }

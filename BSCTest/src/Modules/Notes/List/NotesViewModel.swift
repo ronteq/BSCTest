@@ -58,4 +58,10 @@ class NotesViewModel {
         notes.removeAll(where: { $0.id == note.id })
     }
     
+    func updateNote(_ note: Note) {
+        guard let index = notes.firstIndex(where: { $0.id == note.id }) else { return }
+        notes.remove(at: index)
+        notes.insert(note, at: index)
+    }
+    
 }

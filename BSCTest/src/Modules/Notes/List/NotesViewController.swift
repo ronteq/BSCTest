@@ -157,4 +157,9 @@ extension NotesViewController: UpdateNoteViewControllerDelegate {
         collectionView.reloadData()
     }
     
+    func updateNoteViewControllerDidUpdate(_ note: Note) {
+        viewModel.updateNote(note)
+        collectionView.reloadData()
+    }
+    
 }

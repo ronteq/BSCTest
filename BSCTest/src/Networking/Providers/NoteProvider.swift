@@ -11,6 +11,7 @@ import Foundation
 protocol NoteProviderProtocol {
     func getNotes(_ completion: @escaping (Result<[Note], ApplicationError>) -> Void)
     func createNote(note: Note, _ completion: @escaping (Result<EmptyObject, ApplicationError>) -> Void)
+    func updateNote(note: Note, _ completion: @escaping (Result<EmptyObject, ApplicationError>) -> Void)
     func deleteNote(id: Int, _ completion: @escaping (Result<EmptyObject, ApplicationError>) -> Void)
 }
 
@@ -28,6 +29,10 @@ struct NoteProvider: NoteProviderProtocol {
     
     func createNote(note: Note, _ completion: @escaping (Result<EmptyObject, ApplicationError>) -> Void) {
         networkManager.execute(BscEndpoint.addNote(note: note), completion: completion)
+    }
+    
+    func updateNote(note: Note, _ completion: @escaping (Result<EmptyObject, ApplicationError>) -> Void) {
+        networkManager.execute(BscEndpoint.updateNote(note: note), completion: completion)
     }
     
     func deleteNote(id: Int, _ completion: @escaping (Result<EmptyObject, ApplicationError>) -> Void) {

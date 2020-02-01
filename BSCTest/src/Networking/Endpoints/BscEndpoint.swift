@@ -22,12 +22,14 @@ enum BscEndpoint {
     
     case getNotes
     case addNote(note: Note)
+    case updateNote(note: Note)
     case deleteNote(id: Int)
     
     var endpoint: String {
         switch self {
         case .getNotes,
              .addNote,
+             .updateNote,
              .deleteNote: return "/notes"
         }
     }
@@ -36,6 +38,7 @@ enum BscEndpoint {
         switch self {
         case .getNotes: return "GET"
         case .addNote: return "POST"
+        case .updateNote: return "PUT"
         case .deleteNote: return "DELETE"
         }
     }
@@ -56,6 +59,13 @@ extension BscEndpoint: RequestProvider {
         urlRequest.httpBody = try! JSONEncoder().encode(note)
         return urlRequest
     
+    case .updateNote(let note):
+        let url = getUrlWithEndpoint(endpoint, id: "\(note.id)")
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = method
+        urlRequest.httpBody = try! JSONEncoder().encode(note)
+        return urlRequest
+        
     case .deleteNote(let id):
         let url = getUrlWithEndpoint(endpoint, id: "\(id)")
         var urlRequest = URLRequest(url: url)
