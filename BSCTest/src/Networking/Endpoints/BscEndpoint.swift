@@ -11,28 +11,32 @@ import Foundation
 enum BscEndpoint {
     var baseURL: String { "https://private-anon-48d21db1ad-note10.apiary-mock.com" }
     
-    func getUrlWithEndpoint(_ endpoint: String) -> URL {
-        guard let url = URL(string: "\(baseURL)\(endpoint)") else {
+    func getUrlWithEndpoint(_ endpoint: String, id: String? = nil) -> URL {
+        let urlString = id == nil ? "\(baseURL)\(endpoint)" : "\(baseURL)\(endpoint)/\(id!)"
+        guard let url = URL(string: urlString) else {
             fatalError("Are you sure your endpoints doesn't have a typo?")
         }
         
         return url
     }
     
+    case getNotes
     case addNote(note: Note)
-    case notes
+    case deleteNote(id: Int)
     
     var endpoint: String {
         switch self {
-        case .notes,
-             .addNote: return "/notes"
+        case .getNotes,
+             .addNote,
+             .deleteNote: return "/notes"
         }
     }
     
     var method: String {
         switch self {
-        case .notes: return "GET"
+        case .getNotes: return "GET"
         case .addNote: return "POST"
+        case .deleteNote: return "DELETE"
         }
     }
 }
@@ -41,7 +45,7 @@ enum BscEndpoint {
 extension BscEndpoint: RequestProvider {
   var urlRequest: URLRequest {
     switch self {
-    case .notes:
+    case .getNotes:
       let url = getUrlWithEndpoint(endpoint)
       return URLRequest(url: url)
         
@@ -50,6 +54,12 @@ extension BscEndpoint: RequestProvider {
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method
         urlRequest.httpBody = try! JSONEncoder().encode(note)
+        return urlRequest
+    
+    case .deleteNote(let id):
+        let url = getUrlWithEndpoint(endpoint, id: "\(id)")
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = method
         return urlRequest
     }
   }

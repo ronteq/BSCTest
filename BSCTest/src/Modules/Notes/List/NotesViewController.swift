@@ -92,7 +92,7 @@ class NotesViewController: UIViewController, Loadable {
     
     @objc
     private func addNotePressed() {
-        let addNoteViewModel = AddNoteViewModel()
+        let addNoteViewModel = AddNoteViewModel(nextId: viewModel.notesCount)
         let addNoteViewController = AddNoteViewController(viewModel: addNoteViewModel)
         addNoteViewController.delegate = self
         present(BscNavigationController(rootViewController: addNoteViewController), animated: true, completion: nil)
@@ -102,6 +102,7 @@ class NotesViewController: UIViewController, Loadable {
         let note = viewModel.getNote(at: indexPath)
         let updateNoteViewModel = UpdateNoteViewModel(note: note)
         let updateNoteViewController = UpdateNoteViewController(viewModel: updateNoteViewModel)
+        updateNoteViewController.delegate = self
         navigationController?.pushViewController(updateNoteViewController, animated: true)
     }
     
@@ -145,6 +146,15 @@ extension NotesViewController: AddNoteViewControllerDelegate {
         viewModel.addNote(note)
         let indexPath = IndexPath(row: viewModel.notesCount - 1, section: 0)
         collectionView.insertItems(at: [indexPath])
+    }
+    
+}
+
+extension NotesViewController: UpdateNoteViewControllerDelegate {
+    
+    func updateNoteViewControllerDidDelete(_ note: Note) {
+        viewModel.deleteNote(note)
+        collectionView.reloadData()
     }
     
 }

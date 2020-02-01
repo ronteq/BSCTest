@@ -23,8 +23,8 @@ struct Note: Codable {
         case title
     }
     
-    init(title: String, body: String, colorHex: String) {
-        self.id = 100
+    init(id: Int, title: String, body: String, colorHex: String) {
+        self.id = id
         self.title = title
         self.body = body
         self.colorHex = colorHex

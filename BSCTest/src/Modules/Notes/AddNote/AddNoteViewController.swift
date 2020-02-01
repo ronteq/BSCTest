@@ -35,6 +35,10 @@ class AddNoteViewController: ToggleKeyboardViewController, Loadable {
         fatalError()
     }
     
+    deinit {
+        print("Bye")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initialSetup()

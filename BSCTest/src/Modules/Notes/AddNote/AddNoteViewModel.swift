@@ -14,15 +14,18 @@ class AddNoteViewModel {
     var noteDidCreate: ((Note) -> Void)?
     var noteDidCreateWithError: ((String) -> Void)?
     
+    /// I'm seding the nextId for the notes, but this should be something that backend is responsable of
+    private let nextId: Int
     private let noteProvider: NoteProvider
     
-    init(noteProvider: NoteProvider = NoteProvider()) {
+    init(nextId: Int, noteProvider: NoteProvider = NoteProvider()) {
+        self.nextId = nextId
         self.noteProvider = noteProvider
     }
     
     func saveNote(title: String, body: String, color: Color) {
         showLoader?()
-        let note = Note(title: title, body: body, colorHex: color.hex)
+        let note = Note(id: nextId, title: title, body: body, colorHex: color.hex)
         noteProvider.createNote(note: note) { result in
             switch result {
             case .success: self.noteDidCreate?(note)

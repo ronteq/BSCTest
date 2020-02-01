@@ -17,4 +17,13 @@ extension UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    func createAlertWithCancel(withMessage message: String, completion: ((UIAlertAction) -> Void)? = nil) {
+        let alert = UIAlertController(title: "BSC", message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .destructive, handler: completion)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alert.addAction(action)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
 }

@@ -8,9 +8,14 @@
 
 import UIKit
 
+protocol UpdateNoteViewControllerDelegate: class {
+    func updateNoteViewControllerDidDelete(_ note: Note)
+}
+
 class UpdateNoteViewController: ToggleKeyboardViewController, Loadable {
     
     var containerLoader: ContainerLoader?
+    weak var delegate: UpdateNoteViewControllerDelegate?
     
     private lazy var noteView: NoteView = {
         let view = NoteView()
@@ -30,6 +35,10 @@ class UpdateNoteViewController: ToggleKeyboardViewController, Loadable {
         fatalError()
     }
     
+    deinit {
+        print("Bye")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGray6
@@ -37,15 +46,28 @@ class UpdateNoteViewController: ToggleKeyboardViewController, Loadable {
         addBarButtons()
         setupViews()
         fillUI()
+        makeBindings()
     }
         
     private func addBarButtons() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(showOptions))
+        navigationItem.rightBarButtonItem =
+            UIBarButtonItem(image: UIImage(systemName: "ellipsis"), style: .plain, target: self, action: #selector(showOptions))
     }
         
     @objc
     private func showOptions() {
+        let actionSheet = UIAlertController(title: "", message: "Note options", preferredStyle: .actionSheet)
+        let deleteAction = UIAlertAction(title: "Delete note", style: .destructive) { _ in
+            self.createAlertWithCancel(withMessage: "Are you sure you want to delete this note?") { _ in
+                self.viewModel.deleteNote()
+            }
+        }
         
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        actionSheet.addAction(deleteAction)
+        actionSheet.addAction(cancelAction)
+        present(actionSheet, animated: true, completion: nil)
     }
     
     private func setupViews() {
@@ -73,6 +95,14 @@ class UpdateNoteViewController: ToggleKeyboardViewController, Loadable {
                 self?.stopLoading()
                 self?.navigationController?.popViewController(animated: true)
 //                self?.delegate?.addNoteViewControllerDidCreateNote(note)
+            }
+        }
+        
+        viewModel.noteDidDelete = { [weak self] note in
+            DispatchQueue.main.async {
+                self?.stopLoading()
+                self?.delegate?.updateNoteViewControllerDidDelete(note)
+                self?.navigationController?.popViewController(animated: true)
             }
         }
         

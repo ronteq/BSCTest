@@ -30,7 +30,9 @@ struct NetworkManager: Networking {
                 
                 guard let data = data else { return completion(.failure(.parse)) }
                 
-                let model = try JSONDecoder().decode(T.self, from: data)
+                let dataToDecode = data.isEmpty ? "{}".data(using: .utf8) : data
+                
+                let model = try JSONDecoder().decode(T.self, from: dataToDecode!)
                 completion(.success(model))
             } catch {
                 completion(.failure(.unknown))

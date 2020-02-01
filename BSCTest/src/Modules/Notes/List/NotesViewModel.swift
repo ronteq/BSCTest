@@ -54,4 +54,8 @@ class NotesViewModel {
         return notes[indexPath.row]
     }
     
+    func deleteNote(_ note: Note) {
+        notes.removeAll(where: { $0.id == note.id })
+    }
+    
 }
