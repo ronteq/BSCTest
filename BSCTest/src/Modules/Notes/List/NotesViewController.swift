@@ -53,7 +53,7 @@ class NotesViewController: UIViewController, Loadable {
     private func initialSetup() {
         // TODO: Localized
         view.backgroundColor = .systemGray6
-        title = "Notes"
+        title = "notes_title".localize()
         setupTableView()
         addBarButtons()
     }

@@ -20,4 +20,8 @@ extension String {
         return "\(String(self.prefix(24)))..."
     }
     
+    func localize() -> String {
+        NSLocalizedString(self, comment: "")
+    }
+    
 }
