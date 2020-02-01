@@ -42,6 +42,7 @@ class NoteView: UIView {
         textView.isUserInteractionEnabled = true
         textView.backgroundColor = .systemGray6
         textView.delegate = self
+        textView.autocorrectionType = .no
         return textView
     }()
     
@@ -67,6 +68,15 @@ class NoteView: UIView {
         return button
     }()
     
+    private var bodyTextViewHeightConstraint: NSLayoutConstraint!
+    private var isObservingKeyboard = false
+    
+    private enum UIProperties {
+        static let margin: CGFloat = 24
+        static let buttonHeight: CGFloat = 44
+        
+    }
+    
     private var currentColor: Color = Color(name: "Trivial", hex: "#000000") {
         didSet {
             colorView.backgroundColor = UIColor(hexString: currentColor.hex)
@@ -76,7 +86,19 @@ class NoteView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
-        bodyTextView.becomeFirstResponder()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        if !isObservingKeyboard {
+            beginObservingKeyboard()
+            bodyTextView.becomeFirstResponder()
+        }
+    }
+    
+    deinit {
+        endObservingKeyboard()
     }
     
     required init?(coder: NSCoder) {
@@ -99,6 +121,17 @@ class NoteView: UIView {
         currentColor.hex = hex
     }
     
+    private func beginObservingKeyboard() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        isObservingKeyboard = true
+    }
+    
+    private func endObservingKeyboard() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
     private func setupViews() {
         let horizontalStackView = UIStackView(arrangedSubviews: [titleTextField, colorView])
         horizontalStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -111,6 +144,10 @@ class NoteView: UIView {
         colorView.widthAnchor.constraint(equalToConstant: 60).isActive = true
         colorView.heightAnchor.constraint(equalTo: colorView.widthAnchor, multiplier: 1).isActive = true
         
+        horizontalStackView.topAnchor.constraint(equalTo: topAnchor, constant: UIProperties.margin).isActive = true
+        horizontalStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: UIProperties.margin).isActive = true
+        horizontalStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -UIProperties.margin).isActive = true
+        
         let horizontalButtonsStackView = UIStackView(arrangedSubviews: [changeColorButton, saveButton])
         horizontalButtonsStackView.translatesAutoresizingMaskIntoConstraints = false
         horizontalButtonsStackView.alignment = .fill
@@ -119,21 +156,25 @@ class NoteView: UIView {
         horizontalButtonsStackView.spacing = 16
         addSubview(horizontalButtonsStackView)
         
-        changeColorButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        saveButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        changeColorButton.heightAnchor.constraint(equalToConstant: UIProperties.buttonHeight).isActive = true
+        saveButton.heightAnchor.constraint(equalToConstant: UIProperties.buttonHeight).isActive = true
         
-        let verticalStackView = UIStackView(arrangedSubviews: [horizontalStackView, bodyTextView, horizontalButtonsStackView])
-        verticalStackView.translatesAutoresizingMaskIntoConstraints = false
-        verticalStackView.alignment = .fill
-        verticalStackView.distribution = .fill
-        verticalStackView.axis = .vertical
-        verticalStackView.spacing = 16
-        addSubview(verticalStackView)
-
-        verticalStackView.topAnchor.constraint(equalTo: topAnchor, constant: 24).isActive = true
-        verticalStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24).isActive = true
-        verticalStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24).isActive = true
-        verticalStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -24).isActive = true
+        horizontalButtonsStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: UIProperties.margin).isActive = true
+        horizontalButtonsStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -UIProperties.margin).isActive = true
+        horizontalButtonsStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -UIProperties.margin).isActive = true
+        
+        addSubview(bodyTextView)
+        bodyTextView.topAnchor.constraint(equalTo: horizontalStackView.bottomAnchor, constant: UIProperties.margin).isActive = true
+        bodyTextView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: UIProperties.margin).isActive = true
+        bodyTextView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -UIProperties.margin).isActive = true
+            
+        let bodyTextViewBottomConstraint = bodyTextView.bottomAnchor.constraint(lessThanOrEqualTo: horizontalButtonsStackView.topAnchor, constant: -UIProperties.margin)
+        bodyTextViewBottomConstraint.priority = UILayoutPriority(1000)
+        bodyTextViewBottomConstraint.isActive = true
+        
+        bodyTextViewHeightConstraint = bodyTextView.heightAnchor.constraint(equalToConstant: 10000)
+        bodyTextViewHeightConstraint.priority = UILayoutPriority(500)
+        bodyTextViewHeightConstraint.isActive = true
     }
     
     @objc
@@ -147,11 +188,28 @@ class NoteView: UIView {
         delegate?.noteViewDidSelectChangeColor()
     }
     
+    @objc
+    private func keyboardWillShow(sender: Notification) {
+        if let userInfo = sender.userInfo,
+            let keyboardSize = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
+            let window = UIApplication.shared.windows.first {
+            
+            let bottomPadding = window.safeAreaInsets.bottom
+            let diff = keyboardSize.height - bottomPadding - UIProperties.margin - UIProperties.margin - UIProperties.buttonHeight - 8
+            bodyTextViewHeightConstraint.constant = bodyTextView.frame.height - diff
+        }
+    }
+    
+    @objc
+    private func keyboardWillHide() {
+        bodyTextViewHeightConstraint.constant = 1000
+    }
+    
 }
 
 extension NoteView: UITextViewDelegate {
     
-    func textViewDidChange(_ textView: UITextView) {
+    func textViewDidBeginEditing(_ textView: UITextView) {
         textView.setContentOffset(CGPoint.zero, animated: true)
     }
     
