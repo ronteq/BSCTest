@@ -11,6 +11,14 @@ import Foundation
 enum BscEndpoint {
     var baseURL: String { "https://private-anon-48d21db1ad-note10.apiary-mock.com" }
     
+    func getUrlWithEndpoint(_ endpoint: String) -> URL {
+        guard let url = URL(string: "\(baseURL)\(endpoint)") else {
+            fatalError("Are you sure your endpoints doesn't have a typo?")
+        }
+        
+        return url
+    }
+    
     case addNote(note: Note)
     case notes
     
@@ -34,11 +42,11 @@ extension BscEndpoint: RequestProvider {
   var urlRequest: URLRequest {
     switch self {
     case .notes:
-      guard let url = URL(string: "\(baseURL)\(endpoint)") else { fatalError("Are you sure your endpoints doesn't have a typo?") }
+      let url = getUrlWithEndpoint(endpoint)
       return URLRequest(url: url)
         
     case .addNote(let note):
-        guard let url = URL(string: "\(baseURL)\(endpoint)") else { fatalError("Are you sure your endpoints doesn't have a typo?") }
+        let url = getUrlWithEndpoint(endpoint)
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method
         urlRequest.httpBody = try! JSONEncoder().encode(note)

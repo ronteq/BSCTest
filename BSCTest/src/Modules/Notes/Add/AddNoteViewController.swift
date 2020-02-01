@@ -8,7 +8,14 @@
 
 import UIKit
 
-class AddNoteViewController: ToggleKeyboardViewController {
+protocol AddNoteViewControllerDelegate: class {
+    func addNoteViewControllerDidCreateNote(_ note: Note)
+}
+
+class AddNoteViewController: ToggleKeyboardViewController, Loadable {
+    
+    var containerLoader: ContainerLoader?
+    weak var delegate: AddNoteViewControllerDelegate?
     
     private lazy var addNoteView: AddNoteView = {
         let view = AddNoteView()
@@ -31,6 +38,7 @@ class AddNoteViewController: ToggleKeyboardViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initialSetup()
+        makeBindings()
     }
     
     private func initialSetup() {
@@ -57,6 +65,28 @@ class AddNoteViewController: ToggleKeyboardViewController {
         addNoteView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24).isActive = true
         addNoteView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24).isActive = true
         addNoteView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -24).isActive = true
+    }
+    
+    private func makeBindings() {
+        viewModel.showLoader = { [weak self] in
+            self?.startLoading()
+        }
+        
+        viewModel.noteDidCreate = { [weak self] note in
+            DispatchQueue.main.async {
+                self?.stopLoading()
+                self?.dismiss(animated: true, completion: {
+                    self?.delegate?.addNoteViewControllerDidCreateNote(note)
+                })
+            }
+        }
+        
+        viewModel.noteDidCreateWithError = { [weak self] errorMessage in
+            DispatchQueue.main.async {
+                self?.stopLoading()
+                self?.createAlert(withMessage: errorMessage)
+            }
+        }
     }
     
 }

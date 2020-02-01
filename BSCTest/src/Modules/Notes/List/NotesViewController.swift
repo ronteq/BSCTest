@@ -93,6 +93,7 @@ class NotesViewController: UIViewController, Loadable {
     private func addNotePressed() {
         let addNoteViewModel = AddNoteViewModel()
         let addNoteViewController = AddNoteViewController(viewModel: addNoteViewModel)
+        addNoteViewController.delegate = self
         present(BscNavigationController(rootViewController: addNoteViewController), animated: true, completion: nil)
     }
     
@@ -125,6 +126,16 @@ extension NotesViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: NoteTableViewCell.identifier, for: indexPath) as? NoteTableViewCell else { return UITableViewCell() }
         cell.viewModel = viewModel.getNoteCellViewModel(at: indexPath)
         return cell
+    }
+    
+}
+
+extension NotesViewController: AddNoteViewControllerDelegate {
+    
+    func addNoteViewControllerDidCreateNote(_ note: Note) {
+        viewModel.addNote(note)
+        let indexPath = IndexPath(row: viewModel.notesCount - 1, section: 0)
+        tableView.insertRows(at: [indexPath], with: .right)
     }
     
 }

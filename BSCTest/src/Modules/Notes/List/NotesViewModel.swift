@@ -21,8 +21,20 @@ class NotesViewModel {
         self.noteProvider = noteProvider
     }
     
+    func addNote(_ note: Note) {
+        notes.append(note)
+    }
+    
     @objc
     func getNotes() {
+        /// I do this guard because the API is always returning the same notes.
+        /// Each endpoint it's independent of each other. Tha's why I prefer to just rely on the
+        /// endpoint for the first time and then mantain any other action in memory on the app.
+        guard notes.isEmpty else {
+            self.notesDidLoad?()
+            return
+        }
+        
         noteProvider.getNotes { result in
             switch result {
             case .success(let notes):
