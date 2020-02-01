@@ -1,5 +1,5 @@
 //
-//  AddNoteView.swift
+//  NoteView.swift
 //  BSCTest
 //
 //  Created by Daniel Fernandez on 1/30/20.
@@ -8,14 +8,14 @@
 
 import UIKit
 
-protocol AddNoteViewDelegate: class {
-    func addNoteDidSelectChangeColor()
-    func addNoteDidSave(title: String, body: String, color: Color)
+protocol NoteViewDelegate: class {
+    func noteViewDidSelectChangeColor()
+    func noteViewDidSave(title: String, body: String, color: Color)
 }
 
-class AddNoteView: UIView {
+class NoteView: UIView {
     
-    weak var delegate: AddNoteViewDelegate?
+    weak var delegate: NoteViewDelegate?
     
     private let titleTextField: UITextField = {
         let textField = UITextField()
@@ -83,8 +83,20 @@ class AddNoteView: UIView {
         fatalError()
     }
     
+    func setTitle(_ title: String) {
+        titleTextField.text = title
+    }
+    
+    func setBody(_ body: String) {
+        bodyTextView.text = body
+    }
+    
     func setColor(_ color: Color) {
         currentColor = color
+    }
+    
+    func setColorHex(_ hex: String) {
+        currentColor.hex = hex
     }
     
     private func setupViews() {
@@ -127,17 +139,17 @@ class AddNoteView: UIView {
     @objc
     private func saveButtonPressed() {
         // TODO: Make some validations
-        delegate?.addNoteDidSave(title: titleTextField.text ?? "", body: bodyTextView.text, color: currentColor)
+        delegate?.noteViewDidSave(title: titleTextField.text ?? "", body: bodyTextView.text, color: currentColor)
     }
     
     @objc
     private func changeColorButtonPressed() {
-        delegate?.addNoteDidSelectChangeColor()
+        delegate?.noteViewDidSelectChangeColor()
     }
     
 }
 
-extension AddNoteView: UITextViewDelegate {
+extension NoteView: UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
         textView.setContentOffset(CGPoint.zero, animated: true)

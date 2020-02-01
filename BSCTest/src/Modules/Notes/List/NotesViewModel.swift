@@ -50,4 +50,8 @@ class NotesViewModel {
         return NoteCellViewModel(note: notes[indexPath.row])
     }
     
+    func getNote(at indexPath: IndexPath) -> Note {
+        return notes[indexPath.row]
+    }
+    
 }

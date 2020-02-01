@@ -17,8 +17,8 @@ class AddNoteViewController: ToggleKeyboardViewController, Loadable {
     var containerLoader: ContainerLoader?
     weak var delegate: AddNoteViewControllerDelegate?
     
-    private lazy var addNoteView: AddNoteView = {
-        let view = AddNoteView()
+    private lazy var noteView: NoteView = {
+        let view = NoteView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self
         return view
@@ -59,12 +59,12 @@ class AddNoteViewController: ToggleKeyboardViewController, Loadable {
     }
     
     private func setupViews() {
-        view.addSubview(addNoteView)
+        view.addSubview(noteView)
         
-        addNoteView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 24).isActive = true
-        addNoteView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24).isActive = true
-        addNoteView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24).isActive = true
-        addNoteView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -24).isActive = true
+        noteView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 24).isActive = true
+        noteView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24).isActive = true
+        noteView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24).isActive = true
+        noteView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -24).isActive = true
     }
     
     private func makeBindings() {
@@ -91,16 +91,16 @@ class AddNoteViewController: ToggleKeyboardViewController, Loadable {
     
 }
 
-extension AddNoteViewController: AddNoteViewDelegate {
+extension AddNoteViewController: NoteViewDelegate {
     
-    func addNoteDidSelectChangeColor() {
+    func noteViewDidSelectChangeColor() {
         let colorsViewModel = ColorsViewModel()
         let colorsViewController = ColorsViewController(viewModel: colorsViewModel)
         colorsViewController.delegate = self
         present(colorsViewController, animated: true, completion: nil)
     }
     
-    func addNoteDidSave(title: String, body: String, color: Color) {
+    func noteViewDidSave(title: String, body: String, color: Color) {
         viewModel.saveNote(title: title, body: body, color: color)
     }
     
@@ -109,7 +109,7 @@ extension AddNoteViewController: AddNoteViewDelegate {
 extension AddNoteViewController: ColorsViewControllerDelegate {
     
     func colorsViewControllerDelegate(didSelectColor color: Color) {
-        addNoteView.setColor(color)
+        noteView.setColor(color)
     }
     
 }

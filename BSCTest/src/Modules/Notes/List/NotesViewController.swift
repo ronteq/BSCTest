@@ -99,7 +99,10 @@ class NotesViewController: UIViewController, Loadable {
     }
     
     private func showDetailNote(at indexPath: IndexPath) {
-        
+        let note = viewModel.getNote(at: indexPath)
+        let updateNoteViewModel = UpdateNoteViewModel(note: note)
+        let updateNoteViewController = UpdateNoteViewController(viewModel: updateNoteViewModel)
+        navigationController?.pushViewController(updateNoteViewController, animated: true)
     }
     
 }

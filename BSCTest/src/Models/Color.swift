@@ -10,5 +10,5 @@ import Foundation
 
 struct Color {
     let name: String
-    let hex: String
+    var hex: String
 }

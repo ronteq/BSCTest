@@ -11,7 +11,7 @@
 		4C15244223E1CCB2001060A7 /* RequestProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15244123E1CCB2001060A7 /* RequestProvider.swift */; };
 		4C15244623E1D4E1001060A7 /* AddNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15244523E1D4E1001060A7 /* AddNoteViewController.swift */; };
 		4C15244823E1D7CB001060A7 /* AddNoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15244723E1D7CB001060A7 /* AddNoteViewModel.swift */; };
-		4C15244B23E2DF6A001060A7 /* AddNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15244A23E2DF6A001060A7 /* AddNoteView.swift */; };
+		4C15244B23E2DF6A001060A7 /* NoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15244A23E2DF6A001060A7 /* NoteView.swift */; };
 		4C15244E23E2E6F4001060A7 /* ToggleKeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15244D23E2E6F4001060A7 /* ToggleKeyboardViewController.swift */; };
 		4C15245123E2E753001060A7 /* ColorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15245023E2E753001060A7 /* ColorsViewController.swift */; };
 		4C15245423E2E7A1001060A7 /* ColorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15245323E2E7A1001060A7 /* ColorTableViewCell.swift */; };
@@ -23,6 +23,8 @@
 		4C1F8BD423E1A3F300D5413C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C1F8BD323E1A3F300D5413C /* Assets.xcassets */; };
 		4C1F8BD723E1A3F300D5413C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C1F8BD523E1A3F300D5413C /* LaunchScreen.storyboard */; };
 		4C1F8BE123E1A45800D5413C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C1F8BE023E1A45800D5413C /* Default-568h@2x.png */; };
+		4C2CDD5F23E5B06100ACF814 /* UpdateNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2CDD5E23E5B06100ACF814 /* UpdateNoteViewController.swift */; };
+		4C2CDD6123E5B4BB00ACF814 /* UpdateNoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2CDD6023E5B4BB00ACF814 /* UpdateNoteViewModel.swift */; };
 		4C49671623E59E7100E0663B /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C49671523E59E7100E0663B /* UIView.swift */; };
 		4CFDA84223E1A6B30059B591 /* BscNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFDA84123E1A6B30059B591 /* BscNavigationController.swift */; };
 		4CFDA84523E1A6E70059B591 /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFDA84423E1A6E70059B591 /* ColorPalette.swift */; };
@@ -47,7 +49,7 @@
 		4C15244123E1CCB2001060A7 /* RequestProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestProvider.swift; sourceTree = "<group>"; };
 		4C15244523E1D4E1001060A7 /* AddNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteViewController.swift; sourceTree = "<group>"; };
 		4C15244723E1D7CB001060A7 /* AddNoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteViewModel.swift; sourceTree = "<group>"; };
-		4C15244A23E2DF6A001060A7 /* AddNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteView.swift; sourceTree = "<group>"; };
+		4C15244A23E2DF6A001060A7 /* NoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteView.swift; sourceTree = "<group>"; };
 		4C15244D23E2E6F4001060A7 /* ToggleKeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleKeyboardViewController.swift; sourceTree = "<group>"; };
 		4C15245023E2E753001060A7 /* ColorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsViewController.swift; sourceTree = "<group>"; };
 		4C15245323E2E7A1001060A7 /* ColorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTableViewCell.swift; sourceTree = "<group>"; };
@@ -61,6 +63,8 @@
 		4C1F8BD623E1A3F300D5413C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C1F8BD823E1A3F300D5413C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C1F8BE023E1A45800D5413C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		4C2CDD5E23E5B06100ACF814 /* UpdateNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateNoteViewController.swift; sourceTree = "<group>"; };
+		4C2CDD6023E5B4BB00ACF814 /* UpdateNoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateNoteViewModel.swift; sourceTree = "<group>"; };
 		4C49671523E59E7100E0663B /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		4CFDA84123E1A6B30059B591 /* BscNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BscNavigationController.swift; sourceTree = "<group>"; };
 		4CFDA84423E1A6E70059B591 /* ColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
@@ -91,21 +95,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4C15244323E1D414001060A7 /* Detail */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Detail;
-			sourceTree = "<group>";
-		};
-		4C15244423E1D4D4001060A7 /* Add */ = {
+		4C15244423E1D4D4001060A7 /* AddNote */ = {
 			isa = PBXGroup;
 			children = (
 				4C15244523E1D4E1001060A7 /* AddNoteViewController.swift */,
 				4C15244723E1D7CB001060A7 /* AddNoteViewModel.swift */,
-				4C15244A23E2DF6A001060A7 /* AddNoteView.swift */,
 			);
-			path = Add;
+			path = AddNote;
 			sourceTree = "<group>";
 		};
 		4C15244C23E2E6E4001060A7 /* Helpers */ = {
@@ -195,6 +191,23 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		4C280EAC23E5A71000FA7D3B /* Commons */ = {
+			isa = PBXGroup;
+			children = (
+				4C15244A23E2DF6A001060A7 /* NoteView.swift */,
+			);
+			path = Commons;
+			sourceTree = "<group>";
+		};
+		4C2CDD5D23E5AB8400ACF814 /* UpdateNote */ = {
+			isa = PBXGroup;
+			children = (
+				4C2CDD5E23E5B06100ACF814 /* UpdateNoteViewController.swift */,
+				4C2CDD6023E5B4BB00ACF814 /* UpdateNoteViewModel.swift */,
+			);
+			path = UpdateNote;
+			sourceTree = "<group>";
+		};
 		4CFDA83F23E1A6860059B591 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
@@ -235,8 +248,9 @@
 		4CFDA84923E1A7B10059B591 /* Notes */ = {
 			isa = PBXGroup;
 			children = (
-				4C15244423E1D4D4001060A7 /* Add */,
-				4C15244323E1D414001060A7 /* Detail */,
+				4C2CDD5D23E5AB8400ACF814 /* UpdateNote */,
+				4C15244423E1D4D4001060A7 /* AddNote */,
+				4C280EAC23E5A71000FA7D3B /* Commons */,
 				4CFDA84A23E1A7BA0059B591 /* List */,
 			);
 			path = Notes;
@@ -392,6 +406,7 @@
 				4CFDA85823E1AD220059B591 /* NoteCellViewModel.swift in Sources */,
 				4C15245423E2E7A1001060A7 /* ColorTableViewCell.swift in Sources */,
 				4C15244023E1CB5B001060A7 /* UIViewController.swift in Sources */,
+				4C2CDD5F23E5B06100ACF814 /* UpdateNoteViewController.swift in Sources */,
 				4CFDA84C23E1A7D00059B591 /* NotesViewController.swift in Sources */,
 				4C15245123E2E753001060A7 /* ColorsViewController.swift in Sources */,
 				4CFDA86723E1C48E0059B591 /* NetworkManager.swift in Sources */,
@@ -411,10 +426,11 @@
 				4CFDA86923E1C4C30059B591 /* BscEndpoint.swift in Sources */,
 				4C15244623E1D4E1001060A7 /* AddNoteViewController.swift in Sources */,
 				4CFDA86023E1C3200059B591 /* Note.swift in Sources */,
+				4C2CDD6123E5B4BB00ACF814 /* UpdateNoteViewModel.swift in Sources */,
 				4CFDA84F23E1A9080059B591 /* NoteCollectionViewCell.swift in Sources */,
 				4C15244223E1CCB2001060A7 /* RequestProvider.swift in Sources */,
 				4CFDA86C23E1C5DE0059B591 /* NetworkError.swift in Sources */,
-				4C15244B23E2DF6A001060A7 /* AddNoteView.swift in Sources */,
+				4C15244B23E2DF6A001060A7 /* NoteView.swift in Sources */,
 				4CFDA84823E1A7880059B591 /* UIColor.swift in Sources */,
 				4CFDA85223E1A9330059B591 /* CellProtocol.swift in Sources */,
 			);
