@@ -80,18 +80,12 @@ class NoteCollectionViewCell: UICollectionViewCell {
         addSubview(colorView)
         addSubview(verticalStackView)
         
-        colorView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        colorView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        colorView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        colorView.heightAnchor.constraint(equalToConstant: 16).isActive = true
+        NSLayoutConstraint.activate(colorView.constraintsForAnchoring(to: self, anchors: [.top(.parent), .leading(.parent), .trailing(.parent), .height(16)]))
         
         noteTitleLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
         noteDateLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
         
-        verticalStackView.topAnchor.constraint(equalTo: colorView.bottomAnchor, constant: 8).isActive = true
-        verticalStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8).isActive = true
-        verticalStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8).isActive = true
-        verticalStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8).isActive = true
+        NSLayoutConstraint.activate(verticalStackView.constraintsForAnchoring(to: self, anchors: [.top(.customView(colorView)), .leading(.parent), .trailing(.parent), .bottom(.parent)], constant: 8))
     }
     
     private func fillUI() {

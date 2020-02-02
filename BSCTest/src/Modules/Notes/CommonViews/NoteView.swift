@@ -133,40 +133,23 @@ class NoteView: UIView {
     }
     
     private func setupViews() {
-        let horizontalStackView = UIStackView(arrangedSubviews: [titleTextField, colorView])
-        horizontalStackView.translatesAutoresizingMaskIntoConstraints = false
-        horizontalStackView.alignment = .fill
-        horizontalStackView.distribution = .fill
-        horizontalStackView.axis = .horizontal
-        horizontalStackView.spacing = 16
+        let horizontalStackView = createHorizontalStackView(withViews: [titleTextField, colorView])
         addSubview(horizontalStackView)
         
-        colorView.widthAnchor.constraint(equalToConstant: 60).isActive = true
-        colorView.heightAnchor.constraint(equalTo: colorView.widthAnchor, multiplier: 1).isActive = true
+        NSLayoutConstraint.activate(colorView.constraintsForAnchoring(to: self, anchors: [.width(60), .height(60)]))
+        NSLayoutConstraint.activate(horizontalStackView.constraintsForAnchoring(to: self, anchors: [.top(.parent), .leading(.parent), .trailing(.parent)], constant: UIProperties.margin))
         
-        horizontalStackView.topAnchor.constraint(equalTo: topAnchor, constant: UIProperties.margin).isActive = true
-        horizontalStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: UIProperties.margin).isActive = true
-        horizontalStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -UIProperties.margin).isActive = true
-        
-        let horizontalButtonsStackView = UIStackView(arrangedSubviews: [changeColorButton, saveButton])
-        horizontalButtonsStackView.translatesAutoresizingMaskIntoConstraints = false
-        horizontalButtonsStackView.alignment = .fill
+        let horizontalButtonsStackView = createHorizontalStackView(withViews: [changeColorButton, saveButton])
         horizontalButtonsStackView.distribution = .fillEqually
-        horizontalButtonsStackView.axis = .horizontal
-        horizontalButtonsStackView.spacing = 16
         addSubview(horizontalButtonsStackView)
         
         changeColorButton.heightAnchor.constraint(equalToConstant: UIProperties.buttonHeight).isActive = true
         saveButton.heightAnchor.constraint(equalToConstant: UIProperties.buttonHeight).isActive = true
         
-        horizontalButtonsStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: UIProperties.margin).isActive = true
-        horizontalButtonsStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -UIProperties.margin).isActive = true
-        horizontalButtonsStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -UIProperties.margin).isActive = true
+        NSLayoutConstraint.activate(horizontalButtonsStackView.constraintsForAnchoring(to: self, anchors: [.bottom(.parent), .leading(.parent), .trailing(.parent)], constant: UIProperties.margin))
         
         addSubview(bodyTextView)
-        bodyTextView.topAnchor.constraint(equalTo: horizontalStackView.bottomAnchor, constant: UIProperties.margin).isActive = true
-        bodyTextView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: UIProperties.margin).isActive = true
-        bodyTextView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -UIProperties.margin).isActive = true
+        NSLayoutConstraint.activate(bodyTextView.constraintsForAnchoring(to: self, anchors: [.top(.customView(horizontalStackView)), .leading(.parent), .trailing(.parent)], constant: UIProperties.margin))
             
         let bodyTextViewBottomConstraint = bodyTextView.bottomAnchor.constraint(lessThanOrEqualTo: horizontalButtonsStackView.topAnchor, constant: -UIProperties.margin)
         bodyTextViewBottomConstraint.priority = UILayoutPriority(1000)
@@ -175,6 +158,16 @@ class NoteView: UIView {
         bodyTextViewHeightConstraint = bodyTextView.heightAnchor.constraint(equalToConstant: 10000)
         bodyTextViewHeightConstraint.priority = UILayoutPriority(500)
         bodyTextViewHeightConstraint.isActive = true
+    }
+    
+    private func createHorizontalStackView(withViews views: [UIView]) -> UIStackView {
+        let stackView = UIStackView(arrangedSubviews:views)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.alignment = .fill
+        stackView.distribution = .fill
+        stackView.axis = .horizontal
+        stackView.spacing = 16
+        return stackView
     }
     
     @objc

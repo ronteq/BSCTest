@@ -44,13 +44,8 @@ class ColorTableViewCell: UITableViewCell {
         addSubview(nameLabel)
         addSubview(colorView)
         
-        nameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 24).isActive = true
-        nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24).isActive = true
-        
-        colorView.topAnchor.constraint(equalTo: topAnchor, constant: 24).isActive = true
-        colorView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24).isActive = true
-        colorView.widthAnchor.constraint(equalToConstant: 60).isActive = true
-        colorView.heightAnchor.constraint(equalToConstant: 15).isActive = true
+        NSLayoutConstraint.activate(nameLabel.constraintsForAnchoring(to: self, anchors: [.top(.parent), .leading(.parent)], constant: 24))
+        NSLayoutConstraint.activate(colorView.constraintsForAnchoring(to: self, anchors: [.top(.parent), .trailing(.parent), .width(60), .height(15)], constant: 24))
     }
     
     private func fillUI() {

@@ -20,6 +20,7 @@
 		4C15245A23E2EBAF001060A7 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15245923E2EBAF001060A7 /* Color.swift */; };
 		4C1C686B23E70853008F9B36 /* AppColors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C1C686A23E70853008F9B36 /* AppColors.xcassets */; };
 		4C1C686E23E70A67008F9B36 /* BscColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1C686D23E70A67008F9B36 /* BscColor.swift */; };
+		4C1C687023E73588008F9B36 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1C686F23E73588008F9B36 /* UIView+Constraints.swift */; };
 		4C1F8BCB23E1A3EE00D5413C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1F8BCA23E1A3EE00D5413C /* AppDelegate.swift */; };
 		4C1F8BCD23E1A3EE00D5413C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1F8BCC23E1A3EE00D5413C /* SceneDelegate.swift */; };
 		4C1F8BD423E1A3F300D5413C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C1F8BD323E1A3F300D5413C /* Assets.xcassets */; };
@@ -61,6 +62,7 @@
 		4C15245923E2EBAF001060A7 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		4C1C686A23E70853008F9B36 /* AppColors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppColors.xcassets; sourceTree = "<group>"; };
 		4C1C686D23E70A67008F9B36 /* BscColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BscColor.swift; sourceTree = "<group>"; };
+		4C1C686F23E73588008F9B36 /* UIView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
 		4C1F8BC723E1A3EE00D5413C /* BSCTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BSCTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C1F8BCA23E1A3EE00D5413C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4C1F8BCC23E1A3EE00D5413C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 				4CFDA85923E1B1D50059B591 /* String.swift */,
 				4C15243F23E1CB5B001060A7 /* UIViewController.swift */,
 				4C49671523E59E7100E0663B /* UIView.swift */,
+				4C1C686F23E73588008F9B36 /* UIView+Constraints.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -462,6 +465,7 @@
 				4CFDA85423E1A94E0059B591 /* NotesViewModel.swift in Sources */,
 				4C15245823E2E8EF001060A7 /* ColorCellViewModel.swift in Sources */,
 				4CFDA86923E1C4C30059B591 /* BscEndpoint.swift in Sources */,
+				4C1C687023E73588008F9B36 /* UIView+Constraints.swift in Sources */,
 				4C15244623E1D4E1001060A7 /* AddNoteViewController.swift in Sources */,
 				4CFDA86023E1C3200059B591 /* Note.swift in Sources */,
 				4C2CDD6F23E7044E00ACF814 /* EmptyObject.swift in Sources */,

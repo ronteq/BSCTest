@@ -53,17 +53,14 @@ class NotesViewController: UIViewController, Loadable {
     private func initialSetup() {
         view.backgroundColor = .systemGray6
         title = "notes_title".localize()
-        setupTableView()
+        setupCollectionView()
         addBarButtons()
     }
     
-    private func setupTableView() {
+    private func setupCollectionView() {
         collectionView.refreshControl = refreshControl
         view.addSubview(collectionView)
-        collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        NSLayoutConstraint.activate(collectionView.constraintsForAnchoring(to: view))
     }
     
     private func addBarButtons() {

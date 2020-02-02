@@ -59,11 +59,7 @@ class AddNoteViewController: ToggleKeyboardViewController, Loadable {
     
     private func setupViews() {
         view.addSubview(noteView)
-        
-        noteView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 24).isActive = true
-        noteView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24).isActive = true
-        noteView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24).isActive = true
-        noteView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -24).isActive = true
+        NSLayoutConstraint.activate(noteView.constraintsForAnchoring(to: view, constant: 24))
     }
     
     private func makeBindings() {

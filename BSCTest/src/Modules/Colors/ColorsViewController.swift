@@ -50,10 +50,7 @@ class ColorsViewController: UIViewController {
     private func setupTableView() {
         tableView.tableFooterView = UIView()
         view.addSubview(tableView)
-        tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        NSLayoutConstraint.activate(tableView.constraintsForAnchoring(to: view))
     }
     
 }
