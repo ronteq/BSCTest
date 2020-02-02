@@ -45,5 +45,52 @@ class NotesviewModelTests: XCTestCase {
         sut.getNotes()
         XCTAssertEqual(sut.notesCount, 0)
     }
+    
+    func testGetNoteCellViewModel() {
+        let notes: [Note] = mockData.dataFromJson(fromFileType: .notes)
+        providerMock.mode = .success(notes)
+        sut.getNotes()
+        
+        let firstNoteIndex = IndexPath(row: 0, section: 0)
+        let noteCellViewModel = sut.getNoteCellViewModel(at: firstNoteIndex)
+        XCTAssertEqual(noteCellViewModel.noteTitle, notes[firstNoteIndex.row].title)
+    }
+    
+    func testGetNote() {
+        let notes: [Note] = mockData.dataFromJson(fromFileType: .notes)
+        providerMock.mode = .success(notes)
+        sut.getNotes()
+        
+        let firstNoteIndex = IndexPath(row: 0, section: 0)
+        let note = sut.getNote(at: firstNoteIndex)
+        XCTAssertEqual(note.title, notes[firstNoteIndex.row].title)
+    }
+    
+    func testDeleteNote() {
+        let notes: [Note] = mockData.dataFromJson(fromFileType: .notes)
+        providerMock.mode = .success(notes)
+        sut.getNotes()
+        
+        XCTAssertEqual(sut.notesCount, 6)
+        
+        sut.deleteNote(notes.first!)
+        sut.deleteNote(notes.last!)
+        
+        XCTAssertEqual(sut.notesCount, 4)
+    }
+    
+    func testUpdateNote() {
+        let notes: [Note] = mockData.dataFromJson(fromFileType: .notes)
+        providerMock.mode = .success(notes)
+        sut.getNotes()
+        
+        let newTitle = "Test update note!"
+        let note = Note(id: 1, title: newTitle, body: "", colorHex: "")
+        sut.updateNote(note)
+        
+        let firstNoteIndex = IndexPath(row: 0, section: 0)
+        
+        XCTAssertEqual(sut.getNote(at: firstNoteIndex).title, newTitle)
+    }
 
 }
