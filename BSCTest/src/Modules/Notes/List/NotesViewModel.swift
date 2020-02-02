@@ -15,9 +15,9 @@ class NotesViewModel {
     var notesDidLoadWithError: ((String) -> Void)?
     
     private var notes: [Note] = []
-    private let noteProvider: NoteProvider
+    private let noteProvider: NoteProviderProtocol
     
-    init(noteProvider: NoteProvider = NoteProvider()) {
+    init(noteProvider: NoteProviderProtocol = NoteProvider()) {
         self.noteProvider = noteProvider
     }
     

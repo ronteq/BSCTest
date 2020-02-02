@@ -16,9 +16,9 @@ class AddNoteViewModel {
     
     /// I'm seding the nextId for the notes, but this should be something that backend is responsable of
     private let nextId: Int
-    private let noteProvider: NoteProvider
+    private let noteProvider: NoteProviderProtocol
     
-    init(nextId: Int, noteProvider: NoteProvider = NoteProvider()) {
+    init(nextId: Int, noteProvider: NoteProviderProtocol = NoteProvider()) {
         self.nextId = nextId
         self.noteProvider = noteProvider
     }

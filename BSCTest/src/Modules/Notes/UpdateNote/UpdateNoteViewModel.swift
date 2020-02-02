@@ -20,9 +20,9 @@ class UpdateNoteViewModel {
     var noteDidUpdateWithError: ((String) -> Void)?
     
     private var note: Note
-    private let noteProvider: NoteProvider
+    private let noteProvider: NoteProviderProtocol
     
-    init(note: Note, noteProvider: NoteProvider = NoteProvider()) {
+    init(note: Note, noteProvider: NoteProviderProtocol = NoteProvider()) {
         self.note = note
         self.noteProvider = noteProvider
     }
