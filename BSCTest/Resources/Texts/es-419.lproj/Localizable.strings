@@ -10,6 +10,7 @@
 "save" = "Guardar";
 "change_color" = "Cambiar el color";
 "cancel" = "Cancelar";
+"note_validation" = "Por favor, necesitamos al menos un títutlo";
 
 // Notes list
 "notes_title" = "Notas";
@@ -34,3 +35,7 @@
 // Errors
 "something_went_wrong" = "Hubo un problema. Por favor intenta de nuevo luego.";
 "parse_error" = "Hubo un problema al procesar tu data.";
+"bad_request_error" = "Hubo un problema al enviar tu data";
+"unauthorized_request_error" = "Por favor, vuelva a hacer log in";
+"forbidden_error" = "No tienes permisos para realizar esta operación";
+"resource_not_found_error" = "El recurso que buscas no existe";

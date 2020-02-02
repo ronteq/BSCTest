@@ -10,6 +10,7 @@
 "save" = "Save";
 "change_color" = "Change color";
 "cancel" = "Cancel";
+"note_validation" = "Please, we need a title at least";
 
 // Notes list
 "notes_title" = "Notes";

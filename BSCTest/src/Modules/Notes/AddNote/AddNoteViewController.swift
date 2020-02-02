@@ -96,6 +96,11 @@ extension AddNoteViewController: NoteViewDelegate {
     }
     
     func noteViewDidSave(title: String, body: String, color: Color) {
+        guard !title.isEmpty else {
+            createAlert(withMessage: "note_validation".localize())
+            return
+        }
+        
         viewModel.saveNote(title: title, body: body, color: color)
     }
     

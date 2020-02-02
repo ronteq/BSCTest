@@ -172,7 +172,6 @@ class NoteView: UIView {
     
     @objc
     private func saveButtonPressed() {
-        // TODO: Make some validations
         delegate?.noteViewDidSave(title: titleTextField.text ?? "", body: bodyTextView.text, color: currentColor)
     }
     
