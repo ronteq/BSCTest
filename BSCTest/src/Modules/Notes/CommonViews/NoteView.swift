@@ -51,7 +51,7 @@ class NoteView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("change_color".localize(), for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = ColorPalette.infoColor
+        button.backgroundColor = UIColor.info
         button.layer.cornerRadius = 10
         button.addTarget(self, action: #selector(changeColorButtonPressed), for: .touchUpInside)
         return button
@@ -62,7 +62,7 @@ class NoteView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("save".localize(), for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = ColorPalette.secondaryColor
+        button.backgroundColor = UIColor.secondary
         button.layer.cornerRadius = 10
         button.addTarget(self, action: #selector(saveButtonPressed), for: .touchUpInside)
         return button

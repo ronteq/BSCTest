@@ -47,7 +47,8 @@ class ContainerLoader: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = ColorPalette.mainColor.withAlphaComponent(0.8)
+        
+        backgroundColor = UIColor.main.withAlphaComponent(0.8)
         layer.cornerRadius = 10
         clipsToBounds = true
         setupLoader()

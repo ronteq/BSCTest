@@ -18,6 +18,8 @@
 		4C15245623E2E7FC001060A7 /* ColorsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15245523E2E7FC001060A7 /* ColorsViewModel.swift */; };
 		4C15245823E2E8EF001060A7 /* ColorCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15245723E2E8EF001060A7 /* ColorCellViewModel.swift */; };
 		4C15245A23E2EBAF001060A7 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15245923E2EBAF001060A7 /* Color.swift */; };
+		4C1C686B23E70853008F9B36 /* AppColors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C1C686A23E70853008F9B36 /* AppColors.xcassets */; };
+		4C1C686E23E70A67008F9B36 /* BscColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1C686D23E70A67008F9B36 /* BscColor.swift */; };
 		4C1F8BCB23E1A3EE00D5413C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1F8BCA23E1A3EE00D5413C /* AppDelegate.swift */; };
 		4C1F8BCD23E1A3EE00D5413C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1F8BCC23E1A3EE00D5413C /* SceneDelegate.swift */; };
 		4C1F8BD423E1A3F300D5413C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C1F8BD323E1A3F300D5413C /* Assets.xcassets */; };
@@ -29,7 +31,6 @@
 		4C2CDD6F23E7044E00ACF814 /* EmptyObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2CDD6E23E7044E00ACF814 /* EmptyObject.swift */; };
 		4C49671623E59E7100E0663B /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C49671523E59E7100E0663B /* UIView.swift */; };
 		4CFDA84223E1A6B30059B591 /* BscNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFDA84123E1A6B30059B591 /* BscNavigationController.swift */; };
-		4CFDA84523E1A6E70059B591 /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFDA84423E1A6E70059B591 /* ColorPalette.swift */; };
 		4CFDA84823E1A7880059B591 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFDA84723E1A7880059B591 /* UIColor.swift */; };
 		4CFDA84C23E1A7D00059B591 /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFDA84B23E1A7D00059B591 /* NotesViewController.swift */; };
 		4CFDA84F23E1A9080059B591 /* NoteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFDA84E23E1A9080059B591 /* NoteCollectionViewCell.swift */; };
@@ -58,6 +59,8 @@
 		4C15245523E2E7FC001060A7 /* ColorsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsViewModel.swift; sourceTree = "<group>"; };
 		4C15245723E2E8EF001060A7 /* ColorCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCellViewModel.swift; sourceTree = "<group>"; };
 		4C15245923E2EBAF001060A7 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		4C1C686A23E70853008F9B36 /* AppColors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppColors.xcassets; sourceTree = "<group>"; };
+		4C1C686D23E70A67008F9B36 /* BscColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BscColor.swift; sourceTree = "<group>"; };
 		4C1F8BC723E1A3EE00D5413C /* BSCTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BSCTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C1F8BCA23E1A3EE00D5413C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4C1F8BCC23E1A3EE00D5413C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -73,7 +76,6 @@
 		4C2CDD6E23E7044E00ACF814 /* EmptyObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyObject.swift; sourceTree = "<group>"; };
 		4C49671523E59E7100E0663B /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		4CFDA84123E1A6B30059B591 /* BscNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BscNavigationController.swift; sourceTree = "<group>"; };
-		4CFDA84423E1A6E70059B591 /* ColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
 		4CFDA84723E1A7880059B591 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		4CFDA84B23E1A7D00059B591 /* NotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
 		4CFDA84E23E1A9080059B591 /* NoteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -137,6 +139,22 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		4C1C686923E7081E008F9B36 /* ColorAssets */ = {
+			isa = PBXGroup;
+			children = (
+				4C1C686A23E70853008F9B36 /* AppColors.xcassets */,
+			);
+			path = ColorAssets;
+			sourceTree = "<group>";
+		};
+		4C1C686C23E70A58008F9B36 /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				4C1C686D23E70A67008F9B36 /* BscColor.swift */,
+			);
+			path = Colors;
+			sourceTree = "<group>";
+		};
 		4C1F8BBE23E1A3EE00D5413C = {
 			isa = PBXGroup;
 			children = (
@@ -176,8 +194,9 @@
 		4C1F8BDF23E1A44400D5413C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				4C2CDD6523E61A3B00ACF814 /* texts */,
-				4C2CDD6423E61A1500ACF814 /* images */,
+				4C1C686923E7081E008F9B36 /* ColorAssets */,
+				4C2CDD6523E61A3B00ACF814 /* Texts */,
+				4C2CDD6423E61A1500ACF814 /* Images */,
 				4C1F8BE023E1A45800D5413C /* Default-568h@2x.png */,
 				4C1F8BD523E1A3F300D5413C /* LaunchScreen.storyboard */,
 			);
@@ -187,12 +206,12 @@
 		4C1F8BE223E1A45F00D5413C /* src */ = {
 			isa = PBXGroup;
 			children = (
+				4C1C686C23E70A58008F9B36 /* Colors */,
 				4C15244C23E2E6E4001060A7 /* Helpers */,
 				4CFDA86123E1C36B0059B591 /* Networking */,
 				4CFDA85E23E1C3140059B591 /* Models */,
 				4CFDA85023E1A9290059B591 /* Protocols */,
 				4CFDA84623E1A77D0059B591 /* Extensions */,
-				4CFDA84323E1A6D70059B591 /* ColorPalette */,
 				4CFDA83F23E1A6860059B591 /* Modules */,
 			);
 			path = src;
@@ -215,20 +234,20 @@
 			path = UpdateNote;
 			sourceTree = "<group>";
 		};
-		4C2CDD6423E61A1500ACF814 /* images */ = {
+		4C2CDD6423E61A1500ACF814 /* Images */ = {
 			isa = PBXGroup;
 			children = (
 				4C1F8BD323E1A3F300D5413C /* Assets.xcassets */,
 			);
-			path = images;
+			path = Images;
 			sourceTree = "<group>";
 		};
-		4C2CDD6523E61A3B00ACF814 /* texts */ = {
+		4C2CDD6523E61A3B00ACF814 /* Texts */ = {
 			isa = PBXGroup;
 			children = (
 				4C2CDD6B23E61C0E00ACF814 /* Localizable.strings */,
 			);
-			path = texts;
+			path = Texts;
 			sourceTree = "<group>";
 		};
 		4CFDA83F23E1A6860059B591 /* Modules */ = {
@@ -247,14 +266,6 @@
 				4CFDA84123E1A6B30059B591 /* BscNavigationController.swift */,
 			);
 			path = Navigation;
-			sourceTree = "<group>";
-		};
-		4CFDA84323E1A6D70059B591 /* ColorPalette */ = {
-			isa = PBXGroup;
-			children = (
-				4CFDA84423E1A6E70059B591 /* ColorPalette.swift */,
-			);
-			path = ColorPalette;
 			sourceTree = "<group>";
 		};
 		4CFDA84623E1A77D0059B591 /* Extensions */ = {
@@ -414,6 +425,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C1F8BD723E1A3F300D5413C /* LaunchScreen.storyboard in Resources */,
+				4C1C686B23E70853008F9B36 /* AppColors.xcassets in Resources */,
 				4C2CDD6923E61C0E00ACF814 /* Localizable.strings in Resources */,
 				4C1F8BD423E1A3F300D5413C /* Assets.xcassets in Resources */,
 				4C1F8BE123E1A45800D5413C /* Default-568h@2x.png in Resources */,
@@ -439,9 +451,9 @@
 				4C15245623E2E7FC001060A7 /* ColorsViewModel.swift in Sources */,
 				4CFDA85D23E1BBAB0059B591 /* Loadable.swift in Sources */,
 				4C49671623E59E7100E0663B /* UIView.swift in Sources */,
+				4C1C686E23E70A67008F9B36 /* BscColor.swift in Sources */,
 				4CFDA86423E1C3D10059B591 /* NoteProvider.swift in Sources */,
 				4C1F8BCD23E1A3EE00D5413C /* SceneDelegate.swift in Sources */,
-				4CFDA84523E1A6E70059B591 /* ColorPalette.swift in Sources */,
 				4C15244823E1D7CB001060A7 /* AddNoteViewModel.swift in Sources */,
 				4C15244E23E2E6F4001060A7 /* ToggleKeyboardViewController.swift in Sources */,
 				4CFDA85A23E1B1D50059B591 /* String.swift in Sources */,
