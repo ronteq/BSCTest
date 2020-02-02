@@ -42,9 +42,8 @@ class AddNoteViewController: ToggleKeyboardViewController, Loadable {
     }
     
     private func initialSetup() {
-        // TODO: Localized
         view.backgroundColor = .systemGray6
-        title = "Add a note"
+        title = "add_note_title".localize()
         addBarButtons()
         setupViews()
     }

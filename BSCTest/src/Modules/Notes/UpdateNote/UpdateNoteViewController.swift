@@ -39,7 +39,7 @@ class UpdateNoteViewController: ToggleKeyboardViewController, Loadable {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGray6
-        title = "Update note"
+        title = "update_note_title".localize()
         addBarButtons()
         setupViews()
         fillUI()
@@ -53,14 +53,14 @@ class UpdateNoteViewController: ToggleKeyboardViewController, Loadable {
         
     @objc
     private func showOptions() {
-        let actionSheet = UIAlertController(title: "", message: "Note options", preferredStyle: .actionSheet)
-        let deleteAction = UIAlertAction(title: "Delete note", style: .destructive) { _ in
-            self.createAlertWithCancel(withMessage: "Are you sure you want to delete this note?") { _ in
+        let actionSheet = UIAlertController(title: "", message: "update_note_options".localize(), preferredStyle: .actionSheet)
+        let deleteAction = UIAlertAction(title: "delete_option".localize(), style: .destructive) { _ in
+            self.createAlertWithCancel(withMessage: "delete_confirmation".localize()) { _ in
                 self.viewModel.deleteNote()
             }
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: "cancel".localize(), style: .cancel, handler: nil)
         
         actionSheet.addAction(deleteAction)
         actionSheet.addAction(cancelAction)

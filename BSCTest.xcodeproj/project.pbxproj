@@ -26,6 +26,7 @@
 		4C2CDD5F23E5B06100ACF814 /* UpdateNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2CDD5E23E5B06100ACF814 /* UpdateNoteViewController.swift */; };
 		4C2CDD6123E5B4BB00ACF814 /* UpdateNoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2CDD6023E5B4BB00ACF814 /* UpdateNoteViewModel.swift */; };
 		4C2CDD6923E61C0E00ACF814 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C2CDD6B23E61C0E00ACF814 /* Localizable.strings */; };
+		4C2CDD6F23E7044E00ACF814 /* EmptyObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2CDD6E23E7044E00ACF814 /* EmptyObject.swift */; };
 		4C49671623E59E7100E0663B /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C49671523E59E7100E0663B /* UIView.swift */; };
 		4CFDA84223E1A6B30059B591 /* BscNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFDA84123E1A6B30059B591 /* BscNavigationController.swift */; };
 		4CFDA84523E1A6E70059B591 /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFDA84423E1A6E70059B591 /* ColorPalette.swift */; };
@@ -69,6 +70,7 @@
 		4C2CDD6623E61ACC00ACF814 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		4C2CDD6C23E61C1200ACF814 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		4C2CDD6D23E61C2A00ACF814 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4C2CDD6E23E7044E00ACF814 /* EmptyObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyObject.swift; sourceTree = "<group>"; };
 		4C49671523E59E7100E0663B /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		4CFDA84123E1A6B30059B591 /* BscNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BscNavigationController.swift; sourceTree = "<group>"; };
 		4CFDA84423E1A6E70059B591 /* ColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
@@ -196,12 +198,12 @@
 			path = src;
 			sourceTree = "<group>";
 		};
-		4C280EAC23E5A71000FA7D3B /* Commons */ = {
+		4C280EAC23E5A71000FA7D3B /* CommonViews */ = {
 			isa = PBXGroup;
 			children = (
 				4C15244A23E2DF6A001060A7 /* NoteView.swift */,
 			);
-			path = Commons;
+			path = CommonViews;
 			sourceTree = "<group>";
 		};
 		4C2CDD5D23E5AB8400ACF814 /* UpdateNote */ = {
@@ -269,9 +271,9 @@
 		4CFDA84923E1A7B10059B591 /* Notes */ = {
 			isa = PBXGroup;
 			children = (
+				4C280EAC23E5A71000FA7D3B /* CommonViews */,
 				4C2CDD5D23E5AB8400ACF814 /* UpdateNote */,
 				4C15244423E1D4D4001060A7 /* AddNote */,
-				4C280EAC23E5A71000FA7D3B /* Commons */,
 				4CFDA84A23E1A7BA0059B591 /* List */,
 			);
 			path = Notes;
@@ -308,6 +310,7 @@
 		4CFDA85E23E1C3140059B591 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4C2CDD6E23E7044E00ACF814 /* EmptyObject.swift */,
 				4CFDA85F23E1C3200059B591 /* Note.swift */,
 				4C15245923E2EBAF001060A7 /* Color.swift */,
 			);
@@ -449,6 +452,7 @@
 				4CFDA86923E1C4C30059B591 /* BscEndpoint.swift in Sources */,
 				4C15244623E1D4E1001060A7 /* AddNoteViewController.swift in Sources */,
 				4CFDA86023E1C3200059B591 /* Note.swift in Sources */,
+				4C2CDD6F23E7044E00ACF814 /* EmptyObject.swift in Sources */,
 				4C2CDD6123E5B4BB00ACF814 /* UpdateNoteViewModel.swift in Sources */,
 				4CFDA84F23E1A9080059B591 /* NoteCollectionViewCell.swift in Sources */,
 				4C15244223E1CCB2001060A7 /* RequestProvider.swift in Sources */,

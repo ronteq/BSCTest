@@ -18,11 +18,11 @@ enum NetworkError: Error {
 
     init(fromStatusCode statusCode: Int) {
         switch statusCode {
-        case 400: self = .badRequest(NSLocalizedString("bad_request_error", comment: ""))
-        case 401: self = .unauthorized(NSLocalizedString("unauthorized_request_error", comment: ""))
-        case 403: self = .forbidden(NSLocalizedString("forbidden_error", comment: ""))
-        case 404: self = .notFound(NSLocalizedString("resource_not_found_error", comment: ""))
-        case 500: self = .server(NSLocalizedString("server_down_error", comment: ""))
+        case 400: self = .badRequest("bad_request_error".localize())
+        case 401: self = .unauthorized("unauthorized_request_error".localize())
+        case 403: self = .forbidden("forbidden_error".localize())
+        case 404: self = .notFound("resource_not_found_error".localize())
+        case 500: self = .server("something_went_wrong".localize())
         default: self = .unknown
         }
     }

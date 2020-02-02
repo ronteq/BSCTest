@@ -6,6 +6,31 @@
   Copyright © 2020 danielfcodes. All rights reserved.
 */
 
-// Notes list
+// General
+"save" = "Guardar";
+"change_color" = "Cambiar el color";
+"cancel" = "Cancelar";
 
+// Notes list
 "notes_title" = "Notas";
+
+// Add Note
+"add_note_title" = "Añade una nota";
+"add_note_title_placeholder" = "Increible título para tu nota";
+
+// Update Note
+"update_note_title" = "Actualiza tu nota";
+"update_note_options" = "Opciones";
+"delete_option" = "Eliminar nota";
+"delete_confirmation" = "¿Estás seguro que quieres eliminar la nota?";
+
+// Colors
+"vacation" = "Vacaciones";
+"work" = "Trabajo";
+"personal_life" = "Vida personal";
+"sports" = "Deportes";
+"trivial" = "Trivial";
+
+// Errors
+"something_went_wrong" = "Hubo un problema. Por favor intenta de nuevo luego.";
+"parse_error" = "Hubo un problema al procesar tu data.";

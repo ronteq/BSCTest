@@ -21,7 +21,7 @@ class NoteView: UIView {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.borderStyle = .none
-        textField.placeholder = "Amazing title for your note" // TODO: localize
+        textField.placeholder = "add_note_title_placeholder".localize()
         textField.font = UIFont.systemFont(ofSize: 20)
         return textField
     }()
@@ -49,7 +49,7 @@ class NoteView: UIView {
     private lazy var changeColorButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Change color", for: .normal)
+        button.setTitle("change_color".localize(), for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = ColorPalette.infoColor
         button.layer.cornerRadius = 10
@@ -60,7 +60,7 @@ class NoteView: UIView {
     private lazy var saveButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Save", for: .normal)
+        button.setTitle("save".localize(), for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = ColorPalette.secondaryColor
         button.layer.cornerRadius = 10
@@ -77,7 +77,7 @@ class NoteView: UIView {
         
     }
     
-    private var currentColor: Color = Color(name: "Trivial", hex: "#000000") {
+    private var currentColor: Color = Color(name: "trivial".localize(), hex: "#000000") {
         didSet {
             colorView.backgroundColor = UIColor(hexString: currentColor.hex)
         }

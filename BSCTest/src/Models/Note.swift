@@ -8,10 +8,6 @@
 
 import Foundation
 
-struct EmptyObject: Decodable {
-    
-}
-
 struct Note: Codable {
     let id: Int
     var title: String
