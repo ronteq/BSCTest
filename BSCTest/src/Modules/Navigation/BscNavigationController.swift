@@ -17,7 +17,7 @@ class BscNavigationController: UINavigationController {
         navBarAppearance.configureWithOpaqueBackground()
         navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
         navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        navBarAppearance.backgroundColor = ColorPalette.mainColor
+        navBarAppearance.backgroundColor = UIColor.main
         
         self.navigationBar.standardAppearance = navBarAppearance
         self.navigationBar.scrollEdgeAppearance = navBarAppearance

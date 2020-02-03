@@ -8,16 +8,27 @@
 
 import UIKit
 
-class NotesViewController: UIViewController {
+class NotesViewController: UIViewController, Loadable {
     
-    private lazy var tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.backgroundColor = .systemGray6
-        tableView.register(NoteTableViewCell.self, forCellReuseIdentifier: NoteTableViewCell.identifier)
-        return tableView
+    var containerLoader: ContainerLoader?
+    
+    private lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        cv.delegate = self
+        cv.dataSource = self
+        cv.register(NoteCollectionViewCell.self, forCellWithReuseIdentifier: NoteCollectionViewCell.identifier)
+        cv.backgroundColor = .systemGray6
+        return cv
+    }()
+    
+    private lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = .white
+        refreshControl.addTarget(viewModel, action: #selector(viewModel.getNotes), for: .valueChanged)
+        return refreshControl
     }()
     
     private let viewModel: NotesViewModel
@@ -35,24 +46,21 @@ class NotesViewController: UIViewController {
         super.viewDidLoad()
         initialSetup()
         makeBindings()
+        startLoading()
         viewModel.getNotes()
     }
     
     private func initialSetup() {
-        // TODO: Localized
         view.backgroundColor = .systemGray6
-        title = "Notes"
-        setupTableView()
+        title = "notes_title".localize()
+        setupCollectionView()
         addBarButtons()
     }
     
-    private func setupTableView() {
-        tableView.tableFooterView = UIView()
-        view.addSubview(tableView)
-        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    private func setupCollectionView() {
+        collectionView.refreshControl = refreshControl
+        view.addSubview(collectionView)
+        NSLayoutConstraint.activate(collectionView.constraintsForAnchoring(to: view))
     }
     
     private func addBarButtons() {
@@ -63,56 +71,91 @@ class NotesViewController: UIViewController {
     private func makeBindings() {
         viewModel.notesDidLoad = { [weak self] in
             DispatchQueue.main.async {
-                self?.tableView.reloadData()
+                self?.refreshControl.endRefreshing()
+                self?.stopLoading()
+                self?.collectionView.reloadData()
+            }
+        }
+        
+        viewModel.notesDidLoadWithError = { [weak self] errorMessage in
+            DispatchQueue.main.async {
+                self?.refreshControl.endRefreshing()
+                self?.stopLoading()
+                self?.createAlert(withMessage: errorMessage)
             }
         }
     }
     
     @objc
     private func addNotePressed() {
-        
+        let addNoteViewModel = AddNoteViewModel(nextId: viewModel.notesCount)
+        let addNoteViewController = AddNoteViewController(viewModel: addNoteViewModel)
+        addNoteViewController.delegate = self
+        present(BscNavigationController(rootViewController: addNoteViewController), animated: true, completion: nil)
     }
     
     private func showDetailNote(at indexPath: IndexPath) {
-        
+        let note = viewModel.getNote(at: indexPath)
+        let updateNoteViewModel = UpdateNoteViewModel(note: note)
+        let updateNoteViewController = UpdateNoteViewController(viewModel: updateNoteViewModel)
+        updateNoteViewController.delegate = self
+        navigationController?.pushViewController(updateNoteViewController, animated: true)
     }
     
 }
 
-extension NotesViewController: UITableViewDelegate {
+extension NotesViewController: UICollectionViewDataSource {
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewModel.notesCount
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NoteCollectionViewCell.identifier, for: indexPath) as? NoteCollectionViewCell else { return UICollectionViewCell() }
+        cell.viewModel = viewModel.getNoteCellViewModel(at: indexPath)
+        return cell
+    }
+    
+}
+
+extension NotesViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let screenWidth = UIScreen.main.bounds.width
+        let halfScreenWidth = screenWidth / 2
+        return CGSize(width: halfScreenWidth - 32, height: 150)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 24, left: 16, bottom: 24, right: 16)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         showDetailNote(at: indexPath)
     }
     
 }
 
-extension NotesViewController: UITableViewDataSource {
+extension NotesViewController: AddNoteViewControllerDelegate {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.notesCount
+    func addNoteViewControllerDidCreateNote(_ note: Note) {
+        viewModel.addNote(note)
+        let indexPath = IndexPath(row: viewModel.notesCount - 1, section: 0)
+        collectionView.insertItems(at: [indexPath])
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: NoteTableViewCell.identifier, for: indexPath) as? NoteTableViewCell else { return UITableViewCell() }
-        cell.viewModel = viewModel.getNoteCellViewModel(at: indexPath)
-        return cell
+}
+
+extension NotesViewController: UpdateNoteViewControllerDelegate {
+    
+    func updateNoteViewControllerDidDelete(_ note: Note) {
+        viewModel.deleteNote(note)
+        collectionView.reloadData()
     }
     
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-//            viewModel.deleteTask(atIndexPath: indexPath)
-//            tableView.deleteRows(at: [indexPath], with: .left)
-        }
+    func updateNoteViewControllerDidUpdate(_ note: Note) {
+        viewModel.updateNote(note)
+        collectionView.reloadData()
     }
     
 }
