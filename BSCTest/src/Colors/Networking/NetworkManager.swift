@@ -9,14 +9,21 @@
 import Foundation
 
 protocol Networking {
+    var urlSessionManager: URLSessionManager { get }
     func execute<T: Decodable>(_ endpoint: RequestProvider, completion: @escaping (Result<T, ApplicationError>) -> Void)
 }
 
 struct NetworkManager: Networking {
     
+    let urlSessionManager: URLSessionManager
+    
+    init(urlSessionManager: URLSessionManager = URLSession.shared) {
+        self.urlSessionManager = urlSessionManager
+    }
+    
     func execute<T: Decodable>(_ endpoint: RequestProvider, completion: @escaping (Result<T, ApplicationError>) -> Void) {
         let urlRequest = endpoint.urlRequest
-        URLSession.shared.dataTask(with: urlRequest) { data, response, error in
+        urlSessionManager.dataTask(with: urlRequest) { data, response, error in
             do {
                 guard error == nil,
                     let httpResponse = response as? HTTPURLResponse else {

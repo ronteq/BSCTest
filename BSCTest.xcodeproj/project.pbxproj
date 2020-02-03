@@ -36,6 +36,9 @@
 		4C97A09423E74DD300EB1313 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C97A09323E74DD300EB1313 /* MockData.swift */; };
 		4C97A09723E74F0400EB1313 /* notes.json in Resources */ = {isa = PBXBuildFile; fileRef = 4C97A09623E74F0400EB1313 /* notes.json */; };
 		4C97A09923E7512B00EB1313 /* noData.json in Resources */ = {isa = PBXBuildFile; fileRef = 4C97A09823E7512B00EB1313 /* noData.json */; };
+		4C97A09C23E768F100EB1313 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C97A09B23E768F100EB1313 /* NetworkManagerTests.swift */; };
+		4C97A09F23E7695B00EB1313 /* UrlSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C97A09E23E7695B00EB1313 /* UrlSessionManager.swift */; };
+		4C97A0A123E7699B00EB1313 /* UrlSessionManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C97A0A023E7699B00EB1313 /* UrlSessionManagerMock.swift */; };
 		4CFDA84223E1A6B30059B591 /* BscNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFDA84123E1A6B30059B591 /* BscNavigationController.swift */; };
 		4CFDA84823E1A7880059B591 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFDA84723E1A7880059B591 /* UIColor.swift */; };
 		4CFDA84C23E1A7D00059B591 /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFDA84B23E1A7D00059B591 /* NotesViewController.swift */; };
@@ -99,6 +102,9 @@
 		4C97A09323E74DD300EB1313 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		4C97A09623E74F0400EB1313 /* notes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = notes.json; sourceTree = "<group>"; };
 		4C97A09823E7512B00EB1313 /* noData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = noData.json; sourceTree = "<group>"; };
+		4C97A09B23E768F100EB1313 /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
+		4C97A09E23E7695B00EB1313 /* UrlSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlSessionManager.swift; sourceTree = "<group>"; };
+		4C97A0A023E7699B00EB1313 /* UrlSessionManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlSessionManagerMock.swift; sourceTree = "<group>"; };
 		4CFDA84123E1A6B30059B591 /* BscNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BscNavigationController.swift; sourceTree = "<group>"; };
 		4CFDA84723E1A7880059B591 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		4CFDA84B23E1A7D00059B591 /* NotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
@@ -181,6 +187,7 @@
 		4C1C686C23E70A58008F9B36 /* Colors */ = {
 			isa = PBXGroup;
 			children = (
+				4CFDA86123E1C36B0059B591 /* Networking */,
 				4C1C686D23E70A67008F9B36 /* BscColor.swift */,
 			);
 			path = Colors;
@@ -241,7 +248,6 @@
 			children = (
 				4C1C686C23E70A58008F9B36 /* Colors */,
 				4C15244C23E2E6E4001060A7 /* Helpers */,
-				4CFDA86123E1C36B0059B591 /* Networking */,
 				4CFDA85E23E1C3140059B591 /* Models */,
 				4CFDA85023E1A9290059B591 /* Protocols */,
 				4CFDA84623E1A77D0059B591 /* Extensions */,
@@ -286,8 +292,9 @@
 		4C97A07F23E7477500EB1313 /* BSCTestTests */ = {
 			isa = PBXGroup;
 			children = (
-				4C97A08D23E7480000EB1313 /* Mocks */,
+				4C97A09A23E768DB00EB1313 /* Networking */,
 				4C97A08823E7479300EB1313 /* Modules */,
+				4C97A08D23E7480000EB1313 /* Mocks */,
 				4C97A08223E7477500EB1313 /* Info.plist */,
 			);
 			path = BSCTestTests;
@@ -330,6 +337,7 @@
 			isa = PBXGroup;
 			children = (
 				4C97A08F23E7481000EB1313 /* Providers */,
+				4C97A0A023E7699B00EB1313 /* UrlSessionManagerMock.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -358,6 +366,23 @@
 				4C97A09823E7512B00EB1313 /* noData.json */,
 			);
 			path = JSONFiles;
+			sourceTree = "<group>";
+		};
+		4C97A09A23E768DB00EB1313 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				4C97A09B23E768F100EB1313 /* NetworkManagerTests.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		4C97A09D23E7694900EB1313 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				4C15244123E1CCB2001060A7 /* RequestProvider.swift */,
+				4C97A09E23E7695B00EB1313 /* UrlSessionManager.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		4CFDA83F23E1A6860059B591 /* Modules */ = {
@@ -445,6 +470,7 @@
 				4CFDA86A23E1C5B00059B591 /* Errors */,
 				4CFDA86523E1C41B0059B591 /* Endpoints */,
 				4CFDA86223E1C3C70059B591 /* Providers */,
+				4C97A09D23E7694900EB1313 /* Protocols */,
 				4CFDA86623E1C48E0059B591 /* NetworkManager.swift */,
 			);
 			path = Networking;
@@ -453,7 +479,6 @@
 		4CFDA86223E1C3C70059B591 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
-				4C15244123E1CCB2001060A7 /* RequestProvider.swift */,
 				4CFDA86323E1C3D10059B591 /* NoteProvider.swift */,
 			);
 			path = Providers;
@@ -586,6 +611,7 @@
 				4C1F8BCB23E1A3EE00D5413C /* AppDelegate.swift in Sources */,
 				4CFDA85823E1AD220059B591 /* NoteCellViewModel.swift in Sources */,
 				4C15245423E2E7A1001060A7 /* ColorTableViewCell.swift in Sources */,
+				4C97A09F23E7695B00EB1313 /* UrlSessionManager.swift in Sources */,
 				4C15244023E1CB5B001060A7 /* UIViewController.swift in Sources */,
 				4C2CDD5F23E5B06100ACF814 /* UpdateNoteViewController.swift in Sources */,
 				4CFDA84C23E1A7D00059B591 /* NotesViewController.swift in Sources */,
@@ -623,9 +649,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C97A09C23E768F100EB1313 /* NetworkManagerTests.swift in Sources */,
 				4C97A09123E7481E00EB1313 /* NoteProviderMock.swift in Sources */,
 				4C97A09423E74DD300EB1313 /* MockData.swift in Sources */,
 				4C97A08C23E747B100EB1313 /* NotesViewModelTests.swift in Sources */,
+				4C97A0A123E7699B00EB1313 /* UrlSessionManagerMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
